@@ -1,0 +1,204 @@
+* {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito Sans' sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+main {
+    height: auto !important;
+}
+
+/*----Slider start------*/
+
+/*-----Popular Courses Start-----*/
+
+.courses {
+    background-image: url("../images/pattern.png");
+}
+
+.head {
+    width: 100%;
+    text-align: right !important;
+    display: flex;
+}
+
+.head:first-child{
+   margin-left: 50%;
+}
+
+
+.head h3 {
+    font-weight: 600;
+}
+
+.post-img {
+    height: 235px;
+}
+
+.narrow {
+    width: 100%;
+    height: 235px;
+    background-color: rgb(44, 175, 193);
+    position: absolute;
+    opacity: .5;
+    transition: all 2s;
+    display: none;
+}
+
+.category {
+    position: absolute;
+    top: 220px;
+    text-transform: lowercase;
+    color: #ffffff;
+    padding: 3px 10px;
+    right: 10%;
+    border-radius: 10%;
+    background-color: red;
+}
+
+.card-title {
+    font-weight: 600;
+}
+
+.card-title a {
+    color: #222222;
+}
+
+.card .btn-eye {
+    position: absolute;
+    z-index: 1;
+    top: 24%;
+    left: 42%;
+    display: none;
+}
+
+.card .btn-eye a, .btn-eye .fa-eye {
+    color: #ffffff;
+    font-size: 1.2rem;
+}
+
+.course-author a {
+    color: #222222;
+    font-weight: 600;
+}
+
+.course-author span {
+    font-size: .8rem;
+}
+
+.course-author span, .card-text, .post-meta ul li {
+    color: #777777;
+}
+
+.course-meta {
+    position: relative;
+    padding-bottom: 30px;
+}
+
+.course-author {
+    position: absolute;
+    left: 0;
+}
+
+.price {
+    position: absolute;
+    right: 0;
+    font-weight: 600;
+    color: #222222;
+}
+
+.course-author a span {
+    color: black;
+}
+
+.post-meta {
+    padding-bottom: 40px;
+}
+
+.post-meta ul {
+    position: relative;
+}
+
+.post-meta ul li {
+    position: absolute;
+}
+
+.post-meta ul li:first-child {
+    left: 0;
+}
+
+.post-meta ul li:nth-child(2) {
+    left: 38%;
+}
+
+.post-meta ul li:last-child {
+    right: 0;
+    cursor: pointer;
+}
+
+.post-meta ul li i {
+    color: #1CB3C8;
+}
+
+/*--Hover--*/
+
+.card:hover .narrow {
+    display: block;
+    transition: .5s;
+}
+
+.card:hover .btn-eye {
+    display: block;
+    transition: .5s;
+}
+
+.card-title a:hover {
+    color: #1CB3C8;
+    transition: .5s;
+}
+
+.course-author a:hover {
+    color: #1CB3C8;
+    transition: .5s;
+}
+@media (max-width: 575.98px) {
+    .head:first-child{
+        margin-left: 7%;
+     }
+    .post-img {
+        height: 260px;
+    }
+    .narrow {
+        height: 260px;
+    }
+    .category {
+        top: 245px;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .head:first-child{
+        margin-left: 30%;
+     }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .head:first-child{
+        margin-left: 50%;
+     }
+}
+
+
+@media (min-width: 992px) and (max-width: 1199px) {}
+
+@media (min-width: 1200px) {}

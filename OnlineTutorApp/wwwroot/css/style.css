@@ -1,0 +1,23 @@
+ .img img{
+     width: 20em;
+    height: 165px;
+
+}
+
+.card-caption .card-style{
+    border: 1px solid #DFDFDF;
+
+}
+.card-style h5{
+    font-size: 1.4rem;
+    text-align: center;
+}
+.card-style h5:hover{
+    color: red;
+    transition: 1s;
+}
+.card-style p{
+    font-size: 1.1rem;
+    padding: 5px;
+
+}

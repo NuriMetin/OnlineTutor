@@ -1,0 +1,205 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<AppUser> _userManager
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - OnlineTutor</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link href="~/css/layout.css" rel="stylesheet" />
+    <link href="~/css/sosial.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Header started -->
+    <header>
+        <nav>
+            <div class="container-fluid">
+                <div class="row">
+                    <!--  Site logo-->
+                    <div class="site-logo">
+                        <a href="index.html"><img src="~/images/logo.png" alt="site logo"></a>
+                    </div>
+
+                    <div class="menu-bar" id="menu_bar">
+                        <i class="fas fa-bars"></i>
+                    </div>
+
+                    <!-- Menu -->
+                    <div class="site-menu" id="site_menu">
+                        <ul class="row">
+                            <li class="site-menu-list"><a href="#" class="menu-element">Ev</a></li>
+                            <li class="site-menu-list"><a href="#" class="menu-element">Haqqımızda</a></li>
+                            <li class="site-menu-list">
+                                <span class="menu-element" id="course">
+                                    Kurslar<i class="fas fa-caret-down"></i>
+                                </span>
+                                <ul class="sub-menu" id="course_submenu">
+                                    <li><a href="courses.html">Bütün kurslar</a></li>
+                                    <hr>
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <li><a href="#">Sənin kursların</a></li>
+                                        <hr>
+                                    }
+                                    <li><a href="#">Kurs yarat</a></li>
+                                    <hr>
+                                    <li><a href="#">Pulsuz kurslar</a></li>
+                                    <hr>
+                                    <li><a href="#">Ödənişli kurslar</a></li>
+                                </ul>
+                            </li>
+                            <li class="site-menu-list">
+                                <span class="menu-element" id="categories">
+                                    Kateqoriya<i class="fas fa-caret-down"></i>
+                                </span>
+                                <ul class="sub-menu" id="categories_submenu">
+                                    <li><a href="#">Bakalavr</a></li>
+                                    <hr>
+                                    <li><a href="#">Magistr</a></li>
+                                    <hr>
+                                    <li><a href="#">Abituriyent</a></li>
+                                    <hr>
+                                    <li><a href="#">MIQ</a></li>
+                                    <hr>
+                                    <li><a href="#">DQI</a></li>
+                                </ul>
+                            </li>
+                            <li class="site-menu-list"><a href="#" class="menu-element">Əlaqə</a></li>
+                            <li class="site-menu-list">
+                                <a href="#" class="menu-element">
+                                    <i class="fas fa-shopping-cart"
+                                       style="color: #333333;"></i><sup style="color: #E84118;">56</sup>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="search-box" id="search_box">
+                        <form method="post">
+                            <input class="txbx-search" type="search" placeholder="Axtar...">
+                            <button class="btn-search">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <div class="btn-login">
+                            <a asp-action="Login" asp-controller="Account" class="btn btn-primary btn_login">Giriş</a>
+                        </div>
+                    }
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div class="btn-logout">
+                            <a asp-action="Logout" asp-controller="Account" class="btn btn-primary">Çıxış</a>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- Header ended -->
+    <main>
+        @RenderBody()
+    </main>
+    <!-- Footer started -->
+    <footer>
+        <div class="container">
+
+            <!-- Top footer -->
+            <div class="top-footer">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#"><span><i class="fas fa-minus"></i></span>About Us</a></li>
+                            <li><a href="#"><span><i class="fas fa-minus"></i></span>Blog</a></li>
+                            <li><a href="#"><span><i class="fas fa-minus"></i></span>Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h4>Categories</h4>
+                        <ul>
+                            <li><a href="#"><span><i class="fas fa-minus"></i></span>About Us</a></li>
+                            <li><a href="#"><span><i class="fas fa-minus"></i></span>Career</a></li>
+                            <li><a href="#"><span><i class="fas fa-minus"></i></span>Resource Center</a></li>
+                            <li><a href="#"><span><i class="fas fa-minus"></i></span>Guides</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h4>Information</h4>
+                        <ul>
+                            <li>
+                                <a href="#"><span><i class="fas fa-paper-plane"></i></span>Huseyn Javid street 25</a>
+                            </li>
+                            <li><a href="#"><span><i class="fas fa-phone"></i></span>+994 70 200 92 60</a></li>
+                            <li><a href="#"><span><i class="fas fa-envelope"></i></span>matinnn@code.edu.az</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h4>Get in touch</h4>
+                        <ul>
+                            <li><a href="#"><span><i class="fas fa-minus"></i></span>Privacy Policy</a></li>
+                            <li><a href="#"><span><i class="fas fa-minus"></i></span>Cookie Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom footer -->
+            <div class="bottom-footer">
+                <div class="col-md-6 col-xs-12">
+                    <p>© 2020, Online Tutor. All rights reserved.</p>
+                </div>
+                <div class="sosial col-md-6 col-xs-12">
+                    <ul class="social-nav model-3d-0 footer-social w3_agile_social top_agile_third">
+                        <li>
+                            <a href="#" class="facebook">
+                                <div class="front"><i class="fab fa-facebook-f"></i></div>
+                                <div class="back"><i class="fab fa-facebook-f"></i></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="twitter">
+                                <div class="front"><i class="fab fa-twitter"></i></div>
+                                <div class="back"><i class="fab fa-twitter"></i></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="instagram">
+                                <div class="front"><i class="fab fa-instagram"></i></div>
+                                <div class="back"><i class="fab fa-instagram"></i></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="pinterest">
+                                <div class="front"><i class="fab fa-linkedin-in"></i></div>
+                                <div class="back"><i class="fab fa-linkedin-in"></i></div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer ended -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+    
+    <!--Validation-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

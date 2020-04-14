@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\course.css" />
+    <Content Remove="wwwroot\favicon.ico" />
+    <Content Remove="wwwroot\index.css" />
+    <Content Remove="wwwroot\layout.css" />
+    <Content Remove="wwwroot\register.css" />
+    <Content Remove="wwwroot\single-course.css" />
+    <Content Remove="wwwroot\sosial.css" />
+    <Content Remove="wwwroot\video.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Views\Shared\rkci4qou.ujh~" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\OnlineTutorAdmin\Controllers\" />
+    <Folder Include="Areas\OnlineTutorAdmin\Data\" />
+    <Folder Include="Areas\OnlineTutorAdmin\Models\" />
+    <Folder Include="Areas\OnlineTutorAdmin\Views\" />
+    <Folder Include="wwwroot\images\sliders\" />
+    <Folder Include="wwwroot\images\profilePhotos\" />
+    <Folder Include="wwwroot\videos\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\lib\owl-carousel\LICENSE" />
+    <None Include="wwwroot\lib\owl-carousel\owl.carousel.js" />
+    <None Include="wwwroot\lib\owl-carousel\owl.carousel.min.js" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,79 @@
+﻿@model PlayingVideoVM
+@{
+    ViewData["Title"] = "PlayingVideo";
+}
+<link href="~/css/single-video.css" rel="stylesheet" />
+<div class="main-container" style="height:1200px !important;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="video-primary">
+                <div class="video">
+                    <video id="video-primary" controls autoPictureInPicture controlslist>
+                        <source src="~/videos/@Model.Video.Path" type="video/mp4">
+                    </video>
+                    <div class="video-content">
+                        <input id="videoId" type="hidden" asp-for="@Model.Video.ID" />
+                        <h1 class="primary-video-title">
+                            @Model.Video.Title
+                        </h1>
+                        <div class="left">
+                            <span class="primary-video-views">
+                                <span class="view_count">@Model.Video.ViewCount</span><span> views - </span><span class="primary-video-publish-date">
+                                    @Model.Video.PublishDate
+                                </span>
+                            </span>
+                        </div>
+                        <div class="right" id="rating">
+                            <button class="like" id="btn_like" style="cursor:pointer; border:none; background-color:transparent;"><i class="fas fa-thumbs-up"></i></button> <span id="like_Count">@Model.Likes</span>
+                            <button class="dislike" id="btn_dislike" style="cursor:pointer;  border:none; background-color:transparent;"><i class="fas fa-thumbs-down"></i></button> <span id="dislike_Count">@Model.DisLikes</span>
+                        </div>
+                    </div>
+                </div>
+                @*<div class="comment">
+                    @{ int commentCount = 0;
+                        try { commentCount=Model.Comments.Count();} catch { commentCount = 0; }
+                        }
+                    <span id="commentCount" class="comment-count">@commentCount comments</span>
+                    <form class="comment-form">
+                        <input class="comment-text" id="commentText" type="text" placeholder="add comment...">
+                        <input type="button" class="btn btn-primary btn-comment" id="btn_comment" value="Comment">
+                    </form>
+                    <div id="comments">
+                        @foreach (var comment in Model.Comments)
+                        {
+                            <div class="users-comment">
+                                <div class="username">
+                                    @comment.AppUser.Name @comment.AppUser.Surname
+                                    <span class="comment-date">@comment.CommentDate</span>
+                                </div>
+                                <span class="comment-content">
+                                    @comment.CommentText
+                                </span>
+                            </div>
+                        }
+                    </div>
+                </div>*@
+            </div>
+            <div class="video-secondary">
+                @foreach (var video in Model.Videos)
+                {
+                    <div class="secondary">
+                        <form asp-action="CountView" asp-controller="VideoCourse" method="post" asp-route-id="@video.ID">
+                            <button id="btn_video" type="submit" style="background:none; border:none; display:flex;">
+                                <video class="video-secondary-video" autoPictureInPicture controlslist>
+                                    <source src="~/videos/@video.Path" type="video/mp4" />
+                                </video>
+                                <div class="video-secondary-content">
+                                    <h2 class="video-secondary-title">@video.Title</h2>
+                                    <span class="video-secondary-views view_count">@video.ViewCount views</span>
+                                </div>
+                            </button>
+                        </form>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="~/js/index.js"></script>

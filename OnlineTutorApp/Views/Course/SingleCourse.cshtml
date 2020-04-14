@@ -1,0 +1,139 @@
+﻿@model CourseVM
+@{
+    ViewData["Title"] = "SingleCourse";
+}
+<link href="~/lib/owl-carousel/assets/owl.carousel.css" rel="stylesheet" />
+<link href="~/lib/owl-carousel/assets/owl.theme.default.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/css/single-course.css">
+
+<div class="container">
+    <div class="row">
+        <div class="left-container col-lg-3">
+            <ul>
+                <li>Video<span>@Model.Course.Videos.Where(x => x.CourseId == Model.Course.ID).Count()</span></li>
+                <li>Didaktik material<span>@Model.Course.DidacticMaterials.Where(x => x.CourseId == Model.Course.ID).Count()</span></li>
+                <li>Sillabus<span>@Model.Course.Sillabus.Where(x => x.CourseId == Model.Course.ID).Count()</span></li>
+                <li>Kuiz<span>@Model.Course.Quizzes.Where(x => x.CourseId == Model.Course.ID).Count()</span></li>
+            </ul>
+            <a asp-controller="Video" asp-action="PlayingVideo" asp-route-id="1" class="btn-left-container">Videolara get</a>
+        </div>
+        <div class="right-container col-lg-9">
+            <div class="header">
+                <div class="author">
+                    <img src="~/images/profilePhotos/@Model.CourseUser.AppUser.Image" alt="">
+                    <span>@Model.CourseUser.AppUser.Name @Model.CourseUser.AppUser.Surname</span>
+                </div>
+                <div class="category">
+                    <span>Kateqoriya:</span><span style="color: #333333; font-weight: 600;">@Model.Course.Category.Name</span>
+                </div>
+            </div>
+            <p class="course-title">The most impressive is collection of share me online college courses</p>
+            <span class="course-price">@Model.Course.Amount</span>
+            <div class="course-image">
+                <img src="~/images/courses/@Model.Course.Image" alt="">
+            </div>
+            <div class="course-tab-content">
+                <ul id="tab-content-nav" onclick="tabContentClick.call(this)" class="tab-content-nav">
+                    <li class="selected"><span>Didaktik Material</span></li>
+                    <li class=""><span>Sillabus</span></li>
+                    <li class=""><span>Kuiz</span></li>
+                </ul>
+                <ul id="tab-content" class="tab-content">
+                    <li class="">
+                        <div class="file">
+                            <i class="far fa-file-alt"></i>
+                            <span class="file-title">
+                                yyy urb fgyu erge bg eugb eg bg hvn hgirb ghirhb hgiour hg
+                                irr gh ghr r egbg gu uvrb bhv
+                            </span>
+                        </div>
+                        <div class="file">
+                            <i class="far fa-file-alt"></i>
+                            <span class="file-title">
+                                yyy urb fgyu erge bg eugb eg bg hvn hgirb ghirhb hgiour hg
+                                irr gh ghr r egbg gu uvrb bhv
+                            </span>
+                        </div>
+                        <div class="file">
+                            <i class="far fa-file-alt"></i>
+                            <span class="file-title">
+                                yyy urb fgyu erge bg eugb eg bg hvn hgirb ghirhb hgiour hg
+                                irr gh ghr r egbg gu uvrb bhv
+                            </span>
+                        </div>
+                    </li>
+                    <li class="active-content">
+                        <div class="file">
+                            <i class="far fa-file-alt"></i>
+                            <span class="file-title">
+                                yyy urb fgyu erge bg eugb eg bg hvn hgirb ghirhb hgiour hg
+                                irr gh ghr r egbg gu uvrb bhv
+                            </span>
+                        </div>
+                        <div class="file">
+                            <i class="far fa-file-alt"></i>
+                            <span class="file-title">
+                                yyy urb fgyu erge bg eugb eg bg hvn hgirb ghirhb hgiour hg
+                                irr gh ghr r egbg gu uvrb bhv
+                            </span>
+                        </div>
+                    </li>
+                    <li class="">
+                        <div class="file">
+                            <i class="far fa-file-alt"></i>
+                            <span class="file-title">
+                                yyy urb fgyu erge bg eugb eg bg hvn hgirb ghirhb hgiour hg
+                                irr gh ghr r egbg gu uvrb bhv
+                            </span>
+                        </div>
+                        <div class="file">
+                            <i class="far fa-file-alt"></i>
+                            <span class="file-title">
+                                yyy urb fgyu erge bg eugb eg bg hvn hgirb ghirhb hgiour hg
+                                irr gh ghr r egbg gu uvrb bhv
+                            </span>
+                        </div>
+                        <div class="file">
+                            <i class="far fa-file-alt"></i>
+                            <span class="file-title">
+                                yyy urb fgyu erge bg eugb eg bg hvn hgirb ghirhb hgiour hg
+                                irr gh ghr r egbg gu uvrb bhv
+                            </span>
+                        </div>
+                        <div class="file">
+                            <i class="far fa-file-alt"></i>
+                            <span class="file-title">
+                                yyy urb fgyu erge bg eugb eg bg hvn hgirb ghirhb hgiour hg
+                                irr gh ghr r egbg gu uvrb bhv
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-12 pt-5" style="text-align:center;">
+            <h3>Videolar</h3>
+        </div>
+        <div class="owl-carousel owl-theme" style="display:block; padding:25px 0 50px 0; ">
+            @foreach (var video in Model.Videos)
+            {
+                <div class="img">
+                    <a asp-controller="Video" asp-action="PlayingVideo" asp-route-id="@video.ID">
+                        <div class="card-caption">
+                            <div class="card-style">
+                                <video class="video-secondary-video" style="height:175px; width:100%;" autoPictureInPicture controlslist>
+                                    <source src="~/videos/@video.Path" type="video/mp4">
+                                </video>
+                                <h5 style="padding-bottom:15px; font-size:1rem; font-weight:bold;">@video.Title</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.slim.min.js"></script>
+<script src="~/lib/owl-carousel/owl.carousel.min.js"></script>
+<script src="~/lib/script.js"></script>

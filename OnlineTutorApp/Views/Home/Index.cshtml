@@ -1,0 +1,131 @@
+﻿@model HomeVM
+@{
+    ViewData["Title"] = "Home Page";
+}
+<link href="~/css/index.css" rel="stylesheet" />
+<div class="carousel slide mb-5" id="slider">
+    <ul class="carousel-indicators">
+        <li data-target="#slider" data-slide-to="0" class="active"></li>
+        <li data-target="#slider" data-slide-to="1"></li>
+        <li data-target="#slider" data-slide-to="2"></li>
+    </ul>
+    <div class="carousel-inner">
+        <div class="carousel-item active testiminioal">
+            <img src="~/images/sliders/1.jpg" class="d-block w-100  " alt="">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Slider N1</h5>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt, voluptatibus.</p>
+            </div>
+        </div>
+        <div class="carousel-item testiminioal">
+            <img src="~/images/sliders/2.jpg" class="d-block w-100  " alt="">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Slider N1</h5>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt, voluptatibus.</p>
+            </div>
+        </div>
+        <div class="carousel-item testiminioal">
+            <img src="~/images/sliders/1.jpg" class="d-block w-100  " alt="">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Slider N1</h5>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt, voluptatibus.</p>
+            </div>
+        </div>
+        <div class="carousel-item testiminioal">
+            <img src="~/images/sliders/2.jpg" class="d-block w-100  " alt="">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Slider N1</h5>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt, voluptatibus.</p>
+            </div>
+        </div>
+        <div class="carousel-item testiminioal">
+            <img src="~/images/sliders/3.jpg" class="d-block w-100  " alt="">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Slider N1</h5>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt, voluptatibus.</p>
+            </div>
+        </div>
+        <a href="#slider" class="carousel-control-prev" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a href="#slider" class="carousel-control-next" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+</div>
+
+<div class="courses pb-5">
+    <div class="popular-course-header">
+        <div class="container">
+            <div class="row">
+                <div class="head">
+                    <h3>Populyar kurslar</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="course-body">
+        <div class="container">
+            <div class="row">
+                @for (int i = 0; i < Model.Courses.Count(); i++)
+                {
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 mt-4">
+                        <div class="card">
+                            <span class="btn-eye"><a asp-controller="Course" asp-action="SingleCourse" asp-route-id="@Model.Courses.ElementAt(i).ID"><i class="fas fa-eye"></i>Bax</a></span>
+                            <div class="narrow"></div>
+                            <img src="~/images/courses/@Model.Courses.ElementAt(i).Image" class="post-img" alt="....">
+                            <span class="category">@Model.Courses.ElementAt(i).Category.Name</span>
+                            <div class="card-body">
+                                <h5 class="card-title"><a href="single-course.html">@Model.Courses.ElementAt(i).Title</a></h5>
+                                <p class="card-text">@Model.Courses.ElementAt(i).Content</p>
+                                <div class="course-meta">
+                                    <p class="course-author">
+                                        @for (int k = 0; k < Model.CourseUsers.Count(); k++)
+                                        {
+                                            @if (Model.CourseUsers.ElementAt(k).CourseId == Model.Courses.ElementAt(i).ID)
+                                            {
+                                                <a asp-action="" asp-controller="" asp-route-id="@Model.CourseUsers.ElementAt(k).AppUser.Id">@Model.CourseUsers.ElementAt(k).AppUser.Name @Model.CourseUsers.ElementAt(k).AppUser.Surname</a>
+                                            }
+                                        }
+                                        <span>tərəfindən</span>
+                                    </p>
+                                    <p class="price">@Model.Courses.ElementAt(i).Amount</p>
+                                </div>
+                                <div class="post-meta">
+                                    <ul>
+                                        <li><i class="fas fa-eye"></i> @Model.Courses.ElementAt(i).ViewCount baxış</li>
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <li class="course-like">
+                                                @{ string heartStyle = "far";
+                                                    @try
+                                                    {
+                                                        if (Model.LikeForCourses.Where(x => x.AppUserId == ViewBag.UserId && x.CourseId == Model.Courses.ElementAt(i).ID).SingleOrDefault().Liked == true)
+                                                        {
+                                                            heartStyle = "fas";
+                                                        }
+                                                    }
+                                                    catch { heartStyle = "far"; }
+                                                }
+                                                <i class="@heartStyle fa-heart"></i>
+                                                @Model.LikeForCourses.Where(x => x.CourseId == Model.Courses.ElementAt(i).ID).Count()
+                                            </li>
+                                        }
+                                        @if (!User.Identity.IsAuthenticated)
+                                        {
+                                            <li>
+                                                <i class="far fa-heart"></i>
+                                                @Model.LikeForCourses.Where(x => x.CourseId == Model.Courses.ElementAt(i).ID).Count()
+                                            </li>
+                                        }
+                                        <li class="add-to-card"><i class="fas fa-cart-plus"></i> Səbətə at</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

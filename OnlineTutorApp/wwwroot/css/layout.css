@@ -1,0 +1,375 @@
+* {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+/*----Header Started----*/
+
+header {
+    width: 100%;
+    height: 100px;
+    background-color: #FCFCFC;
+    /* background-color: #FCFCFC;*/
+}
+
+.container-fluid {
+    width: 97%;
+    height: 100px;
+    padding-top: 25px;
+}
+
+/*   Site logo   */
+
+.site-logo {
+    width: 6%;
+}
+
+.site-logo img {
+    height: 50px;
+}
+
+/*  Site menu   */
+
+.menu-bar {
+    display: none;
+}
+
+.site-menu {
+    padding-top: 12px;
+    width: 64%;
+    padding-left: 5%;
+}
+
+.site-menu-list {
+    padding: 0 3% 20px 3%;
+}
+
+.site-menu-list a, .site-menu-list span {
+    font-weight: 600;
+    font-size: .9rem;
+    text-transform: uppercase;
+    color: #333333;
+    cursor: pointer;
+}
+
+.fa-caret-down {
+    color: black;
+}
+
+.sub-menu {
+    position: absolute;
+    border: rgba(0, 0, 0, .1) .01rem solid;
+    border-top: #3478F6 2px solid;
+    margin-top: 20px;
+    padding: 15px;
+    display: none;
+    z-index: 1;
+    background-color: #ffffff;
+}
+
+.sub-menu li a {
+    color: #777;
+    font-size: .9rem;
+    font-weight: 400;
+    text-transform: capitalize;
+}
+
+.menu-element .fa-shopping-cart {
+    font-size: 1.2rem;
+}
+
+hr {
+    padding: 0;
+    margin: 5px 0;
+}
+
+/*  Search box   */
+
+.search-box {
+    padding-top: 9px;
+}
+
+.search-box form {
+    position: relative;
+    background: #2f3640;
+    height: 30px;
+    border-radius: 40px;
+    padding: 0;
+}
+
+.btn-search {
+    color: #e84118;
+    float: right;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+    border: none;
+}
+
+.txbx-search {
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    width: 12rem;
+    padding: 0 6px 0 10px;
+    color: #ffffff;
+    font-size: 14px;
+    transition: 0.4s;
+    line-height: 30px;
+}
+
+/*   Login  */
+
+.btn-login, .btn-logout {
+    padding-left: 3%;
+    padding-top: 8px;
+}
+
+    .btn-login a, .btn-logout a {
+        padding: 3px 8px;
+    }
+
+/*----Login Modal----*/
+
+.login-modal {
+    position: absolute;
+    display: none;
+    border: 1px #CED4DA solid;
+    left: 30%;
+    background: #ffffff;
+    padding: 4% 7%;
+    z-index: 2;
+    border-radius: 1%;
+    width: 40%;
+}
+
+.login-modal h3 {
+    padding-bottom: 7%;
+    margin-left: 40%;
+}
+
+.fa-times {
+    position: absolute;
+    right: 3%;
+    top: 3%;
+    cursor: pointer;
+}
+
+.login-modal input {
+    margin-top: 20px;
+}
+
+.login-modal .btn-primary {
+    margin-left: 23%;
+    padding: 5px 3%;
+    display:block;
+}
+
+.account {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.account span {
+    display: block;
+    padding: 5px 0;
+    color: #9EA4A9;
+    font-size: .8rem;
+}
+
+.account span a {
+    color: #111111;
+    font-weight: 600;
+}
+
+/*----Header Ended----*/
+
+/*----Footer Started----*/
+
+footer {
+    background-color: #0956E5;
+}
+
+.top-footer {
+    padding: 50px 0;
+}
+
+.top-footer h4, .top-footer li a, .bottom-footer p, .bottom-footer span {
+    color: #ffffff;
+}
+
+.top-footer h4 {
+    padding-bottom: 10px;
+}
+
+.top-footer li {
+    padding-top: 5px;
+}
+
+.top-footer li a span {
+    padding-right: 10px;
+}
+
+footer .fas {
+    color: #F5B016;
+    font-size: .8rem;
+}
+
+.bottom-footer {
+    display: flex;
+    border-top: #3F7DF0 solid 1px;
+    padding: 20px 0;
+}
+
+.sosial {
+    text-align: right;
+    position: relative;
+}
+
+.social-nav {
+    margin-top: 0 !important;
+    position: absolute;
+    right: 0 !important;
+}
+
+@media (max-width: 991px) {
+    /*  Header   */
+    header {
+        height: auto !important;
+        background-color: #FCFCFC;
+    }
+    header .container-fluid {
+        width: 100%;
+    }
+    .site-logo {
+        width: 50%;
+        padding-left: 3%;
+    }
+    .menu-bar {
+        display: block;
+        text-align: right;
+        width: 50%;
+        padding-top: 10px;
+        padding-right: 4%;
+        cursor: pointer;
+    }
+    .menu-bar .fa-bars {
+        font-size: 1.5rem;
+    }
+    .site-menu, .site-menu-list, .search-box, .btn-login {
+        width: 100%;
+        text-align: center;
+        z-index: 1;
+    }
+    .site-menu, .search-box, .btn-login {
+        display: none;
+    }
+    .site-menu {
+        width: 100%;
+        margin-top: 30px;
+        background-color: #EDF6EC;
+        height: auto;
+        padding-bottom: 0 !important;
+    }
+    .site-menu .row {
+        display: inline-block;
+        width: 100%;
+    }
+    .site-menu-list {
+        padding: 0 3% 20px 3%;
+    }
+    .sub-menu {
+        display: none;
+        width: 100%;
+        position: relative;
+        margin: 0;
+        padding: 0;
+        border: none;
+        background-color: #EDF6EC;
+    }
+    .sub-menu li {
+        padding: 1px 0;
+    }
+    .sub-menu hr {
+        display: none;
+    }
+    .search-box {
+        margin-top: -25px;
+        background-color: #EDF6EC;
+    }
+    .search-box form {
+        width: 50%;
+        display: inline-block;
+    }
+    .txbx-search {
+        width: 80%;
+    }
+    .btn-login {
+        background-color: #EDF6EC;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    .login-modal {
+        width: 60%;
+        left: 20%;
+    }
+    /*----Footer----*/
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    /*   Header   */
+    .site-logo {
+        padding-left: 3%;
+    }
+    .txbx-search {
+        width: 10rem;
+    }
+    .btn-login {
+        padding-left: 3%;
+    }
+    .site-menu-list:hover>.menu-element {
+        color: #3478F6;
+    }
+    .site-menu-list:hover>.sub-menu {
+        display: block;
+    }
+    .login-modal {
+        left: 26%;
+        width: 50%;
+    }
+    /*----Footer----*/
+}
+
+@media (min-width: 1200px) {
+    /*----Header----*/
+    .site-logo {
+        padding-left: 3%;
+    }
+    .container-fluid {
+        width: 87%;
+    }
+    .site-menu-list:hover>.menu-element {
+        color: #3478F6;
+    }
+    .site-menu-list:hover>.sub-menu {
+        display: block;
+    }
+    /*----Footer----*/
+}

@@ -1,0 +1,470 @@
+﻿
+* {
+    list-style-type: none;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 0 auto;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.clearfix {
+    display: block;
+    clear: both;
+    content: "";
+}
+/*header started*/
+
+header {
+    position: fixed;
+    background: white;
+    width: 100%;
+    z-index: 5;
+    height: 79px;
+}
+
+.main-header {
+    width: 85%;
+    text-align: center;
+}
+
+hr {
+    padding: 0 !important;
+    margin: 0 .8rem 0 .8rem !important;
+}
+
+.site-logo {
+    width: 12.5%;
+    display: inline-block;
+}
+
+.logo {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.site-logo button {
+    display: none;
+}
+
+.site-menu {
+    margin-top: 27.5px;
+    display: inline-block;
+    width: 86%;
+}
+
+.menu {
+    width: 100%;
+}
+
+.menu-element {
+    display: inline-block;
+    margin: 0 .2rem 0 .2rem;
+}
+
+.main-container {
+    padding-top: 105px;
+    height: auto !important;
+    width: 100%;
+}
+/* our cours videos started */
+.videos {
+    padding: 5%;
+    background-color: #F5F5F5;
+    height: auto;
+}
+
+    .videos h2 {
+        text-align: center;
+    }
+
+.course-video {
+    padding-top: 25px;
+    overflow: hidden;
+    position: relative;
+    height: 220px;
+}
+
+.videos video {
+    width: 350px;
+    height: 100% !important;
+    text-align: center;
+}
+
+.video-animate {
+    text-align: center;
+    background-color: rgb(23, 26, 25);
+    position: absolute;
+    z-index: 1;
+    width: 350px;
+    height: 0;
+    transition: all 0.5s ease-out 0s;
+    opacity: .8;
+}
+
+.course-video:hover .video-animate {
+    bottom: 0;
+    height: 75%;
+}
+
+.video-animate h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding-top: 9%;
+    color: #fff;
+}
+
+.video-animate span {
+    color: #fff;
+    letter-spacing: 2px;
+    font-size: .9rem;
+}
+
+.btn-video {
+    display: block;
+    width: 20%;
+    margin-top: 10px;
+    background-color: #525356;
+}
+/* our team ended */
+
+@media (max-width: 575.98px) {
+    hr {
+        display: none;
+    }
+
+    .main-header {
+        width: 100% !important;
+    }
+
+    .site-logo {
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    .logo {
+        margin-left: -45%;
+    }
+
+    .site-logo button {
+        width: 25%;
+        display: inline-block;
+        margin-top: .5rem;
+        margin-right: -5%;
+    }
+
+    .btn-flip {
+        float: right;
+        border: none;
+        background: transparent;
+    }
+
+    .fa-bars {
+        font-size: 1.3rem;
+        color: black;
+    }
+
+    .fa-caret-down {
+        color: #ffffff;
+    }
+
+    .site-menu {
+        width: 100% !important;
+    }
+
+    .menu {
+        padding-top: 10px;
+        display: none;
+        background: #333B48;
+        text-align: center;
+    }
+
+    .menu-element {
+        width: 100%;
+        padding: 8px 0;
+        text-align: center !important;
+        margin-left: -1.2rem;
+    }
+
+    .element-title, .fa {
+        color: #ffffff;
+    }
+
+    .contact {
+        text-align: center;
+    }
+
+    .menu-sub-element {
+        position: relative;
+        text-align: center !important;
+        font-size: .9rem;
+        border: none;
+        margin-top: .5rem;
+        background: #333B48;
+    }
+
+    .sub-element-title {
+        margin-left: -3.4rem;
+        color: #ffffff;
+    }
+
+    .menu-element:hover .element-title {
+        color: #ffffff;
+    }
+
+    .sub-element-title:hover {
+        color: #ffffff;
+    }
+
+    #search {
+        display: none;
+    }
+
+    #search_element {
+        display: block;
+    }
+
+    .btn-search {
+        padding-right: 35px;
+    }
+    /*Footer*/
+    .footer {
+        width: 80% !important;
+    }
+
+    .entry-form {
+        max-width: 100%;
+        max-height: 90%;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 802.98px) {
+    hr {
+        display: none;
+    }
+
+    #panel {
+        height: 950px !important;
+    }
+
+    .main-header {
+        width: 100% !important;
+        padding-top: 1rem;
+    }
+
+    .site-logo {
+        width: 55%;
+    }
+
+    .site-logo {
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    .logo {
+        margin-left: -55%;
+    }
+
+    .site-logo button {
+        width: 25%;
+        display: inline-block;
+        margin-top: .5rem;
+        margin-right: -7%;
+    }
+
+    .btn-flip {
+        float: right;
+        border: none;
+        background: transparent;
+    }
+
+    .fa-bars {
+        font-size: 1.3rem;
+        color: black;
+    }
+
+    .site-menu {
+        width: 100% !important;
+    }
+
+    .menu {
+        padding-top: 10px;
+        display: none;
+        background: #333B48;
+        text-align: center;
+    }
+
+    .menu-element {
+        width: 100%;
+        padding: 8px 0;
+        text-align: center !important;
+        margin-left: -1.2rem;
+    }
+
+    .child-element {
+        border: none;
+    }
+
+    .element-title, .fa {
+        color: #ffffff;
+    }
+
+    .contact {
+        text-align: center;
+    }
+
+    .menu-sub-element {
+        position: relative;
+        text-align: center !important;
+        font-size: .9rem;
+        margin-top: .5rem;
+        background: #333B48;
+        border: none;
+    }
+
+    .sub-element-title {
+        margin-left: -3.4rem;
+    }
+
+    .fa-caret-down {
+        display: inline-block;
+        color: white;
+    }
+
+    .sub-element-title {
+        color: #ffffff;
+    }
+
+    .menu-element:hover .element-title {
+        color: #ffffff;
+    }
+
+    .sub-element-title:hover {
+        color: #ffffff;
+    }
+
+    #search {
+        display: none;
+    }
+
+    #search_element {
+        display: block;
+    }
+
+    .btn-search {
+        padding-right: 35px;
+    }
+    /*Footer*/
+    .footer {
+        width: 80% !important;
+    }
+
+    .entry-form-head {
+        width: 100%;
+    }
+}
+
+@media (min-width: 803px) and (max-width: 991.98px) {
+    .main-header {
+        width: 99% !important;
+    }
+
+    .site-logo {
+        width: 7%;
+    }
+
+    .site-menu {
+        width: 92%;
+    }
+
+    .menu {
+        width: 100%;
+    }
+
+    .menu-element:hover .element-title {
+        background: rgb(27, 134, 113);
+        color: white;
+    }
+
+    .menu-element:hover .menu-sub-element {
+        display: block;
+        text-align: left;
+        padding-left: 0 !important;
+    }
+
+    .menu-sub-element li:hover .child-element {
+        display: block;
+    }
+
+    .menu-sub-element li:hover .sub-element-title {
+        color: #777;
+    }
+
+    .menu-element:hover .element-title {
+        color: #ffffff;
+    }
+
+    .nav-search {
+        position: relative;
+    }
+
+    .search {
+        width: 12rem !important;
+        top: 200%;
+        right: 0;
+        position: absolute;
+    }
+
+    .col-md-3 {
+        width: 50% !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .menu-element:hover .element-title {
+        background: rgb(27, 134, 113);
+        color: white;
+    }
+
+    .menu-element:hover .menu-sub-element {
+        display: block;
+        text-align: left;
+        padding-left: 0 !important;
+    }
+
+    .menu-sub-element li:hover .child-element {
+        display: block;
+    }
+
+    .menu-sub-element li:hover .sub-element-title {
+        color: #777;
+    }
+
+    .menu-element:hover .element-title {
+        color: #ffffff;
+    }
+
+    .fa-caret-down {
+        color: black;
+    }
+
+    .menu-element:hover .fa-caret-down {
+        color: #ffffff;
+    }
+
+    .search {
+        width: 100%;
+    }
+
+    .btn-search {
+        padding: .22rem 3rem 1.4px .5rem;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .menu-element {
+        margin: 0 .1rem 0 0 !important;
+    }
+}
+
+@media (min-width: 1200px) {
+}
