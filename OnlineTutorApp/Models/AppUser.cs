@@ -36,5 +36,6 @@ namespace OnlineTutorApp.Models
         public virtual ICollection<CourseUser> CoursesUsers { get; set; }
         public virtual ICollection<UserTestResult> UserTestResults { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<GroupUserCourse> GroupUserCourses { get; set; }
     }
 }

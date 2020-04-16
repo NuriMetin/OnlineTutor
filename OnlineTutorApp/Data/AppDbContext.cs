@@ -25,6 +25,9 @@ namespace OnlineTutorApp.Data
         public DbSet<UserTestResult> UserTestResults { get; set; }
         public DbSet<LikeForCourse> LikeForCourses { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Group> Groups { get; set; }
+        public DbSet<GroupUserCourse> GroupsUsersCourses { get; set; }
+        public DbSet<GroupRole> GroupRoles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -49,6 +52,13 @@ namespace OnlineTutorApp.Data
                 new Gender { ID = 1, Name = "Kişi" },
                 new Gender { ID = 2, Name = "Qadın" },
                 new Gender { ID = 3, Name = "Başqa" }
+                );
+
+            builder.Entity<Group>().HasData(
+                new Group { ID = 1, Name = "P405" },
+                new Group { ID = 2, Name = "686a2" },
+                new Group { ID = 3, Name = "P407" },
+                new Group { ID = 4, Name = "P403" }
                 );
         }
     }

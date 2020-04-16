@@ -37,5 +37,6 @@ namespace OnlineTutorApp.Models
         public virtual ICollection<Sillabus> Sillabus { get; set; }
         public virtual ICollection<Quiz> Quizzes { get; set; }
         public virtual ICollection<LikeForCourse> LikeForCourses { get; set; }
+        public virtual ICollection<GroupUserCourse> GroupUserCourses { get; set; }
     }
 }

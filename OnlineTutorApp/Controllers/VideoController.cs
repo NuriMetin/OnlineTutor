@@ -53,5 +53,25 @@ namespace OnlineTutorApp.Controllers
 
             return View(videoVM);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> ViewCount(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            Video video = await _dbContext.Videos.FindAsync(id);
+
+            if (video == null)
+                return NotFound();
+
+            int count = video.ViewCount + 1;
+
+            video.ViewCount = count;
+
+            _dbContext.SaveChanges();
+
+            return RedirectToAction("PlayingVideo", "Video", new { id = id });
+        }
     }
 }

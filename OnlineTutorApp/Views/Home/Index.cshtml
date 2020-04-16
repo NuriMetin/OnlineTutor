@@ -67,6 +67,7 @@
     <div class="course-body">
         <div class="container">
             <div class="row">
+                <input type="hidden" id="userId" value="@ViewBag.UserId" />
                 @for (int i = 0; i < Model.Courses.Count(); i++)
                 {
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 mt-4">
@@ -89,7 +90,7 @@
                                         }
                                         <span>tərəfindən</span>
                                     </p>
-                                    <p class="price">@Model.Courses.ElementAt(i).Amount</p>
+                                    <p class="price">€ @Model.Courses.ElementAt(i).Amount</p>
                                 </div>
                                 <div class="post-meta">
                                     <ul>
@@ -108,13 +109,16 @@
                                                     catch { heartStyle = "far"; }
                                                 }
                                                 <i class="@heartStyle fa-heart"></i>
-                                                @Model.LikeForCourses.Where(x => x.CourseId == Model.Courses.ElementAt(i).ID).Count()
+
+                                                <input type="hidden" class="courseId" value="@Model.Courses.ElementAt(i).ID" />
+                                                <span> @Model.LikeForCourses.Where(x => x.CourseId == Model.Courses.ElementAt(i).ID).Count()</span>
+
                                             </li>
                                         }
                                         @if (!User.Identity.IsAuthenticated)
                                         {
                                             <li>
-                                                <i class="far fa-heart"></i>
+                                                <a asp-action="Login" asp-controller="Account"> <i class="far fa-heart"></i></a>
                                                 @Model.LikeForCourses.Where(x => x.CourseId == Model.Courses.ElementAt(i).ID).Count()
                                             </li>
                                         }
@@ -129,3 +133,5 @@
         </div>
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="~/js/index.js"></script>

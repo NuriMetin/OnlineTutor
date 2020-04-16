@@ -1,0 +1,20 @@
+﻿@model Course
+@{ string heartStyle = "far";
+    int count = 0;
+    @try
+    {
+        count = Model.LikeForCourses.Where(x => x.AppUserId == ViewBag.UserId && x.CourseId == Model.ID).Count();
+        if (count != 0)
+        {
+            heartStyle = "fas";
+        }
+        else
+        {
+            heartStyle = "far";
+        }
+    }
+    catch { heartStyle = "far"; }
+}
+<i class="@heartStyle fa-heart"></i>
+<input type="hidden" class="courseId" value="@Model.ID" />
+@Model.LikeForCourses.Where(x => x.CourseId == Model.ID).Count()

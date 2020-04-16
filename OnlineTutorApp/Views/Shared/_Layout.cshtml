@@ -22,7 +22,7 @@
                 <div class="row">
                     <!--  Site logo-->
                     <div class="site-logo">
-                        <a href="index.html"><img src="~/images/logo.png" alt="site logo"></a>
+                        <a asp-controller="Home" asp-action="Index"><img src="~/images/logo.png" alt="site logo"></a>
                     </div>
 
                     <div class="menu-bar" id="menu_bar">
@@ -32,7 +32,7 @@
                     <!-- Menu -->
                     <div class="site-menu" id="site_menu">
                         <ul class="row">
-                            <li class="site-menu-list"><a href="#" class="menu-element">Ev</a></li>
+                            <li class="site-menu-list"><a asp-controller="Home" asp-action="Index" class="menu-element">Ev</a></li>
                             <li class="site-menu-list"><a href="#" class="menu-element">Haqqımızda</a></li>
                             <li class="site-menu-list">
                                 <span class="menu-element" id="course">

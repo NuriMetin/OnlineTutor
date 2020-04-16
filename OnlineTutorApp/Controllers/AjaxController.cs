@@ -22,7 +22,7 @@ namespace OnlineTutorApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Like(int videoId)
+        public async Task<IActionResult> LikeVideo(int videoId)
         {
             AppUser user = _userManager.GetUserAsync(User).GetAwaiter().GetResult();
 
@@ -57,18 +57,21 @@ namespace OnlineTutorApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> DisLike(int videoId)
+        public async Task<IActionResult> DisLikeVideo(int videoId)
         {
             AppUser user = _userManager.GetUserAsync(User).GetAwaiter().GetResult();
+
+            if (user == null)
+                return RedirectToAction("Login", "Account");
+
             var isLiked = await _dbContext.LikeForVideos.Where(x => x.VideoId == videoId && x.Liked == true && x.AppUserId == user.Id).FirstOrDefaultAsync();
 
             var IsDisliked = await _dbContext.LikeForVideos.Where(x => x.VideoId == videoId && x.Liked == false && x.AppUserId == user.Id).FirstOrDefaultAsync();
 
             if (IsDisliked != null)
             {
-                return Json(new { status = "400" });
+                return Json(new { status = 400 });
             }
-
 
             LikeForVideo dislike = new LikeForVideo
             {
@@ -86,7 +89,7 @@ namespace OnlineTutorApp.Controllers
 
             await _dbContext.SaveChangesAsync();
 
-            return Json(new { status = "200" });
+            return Json(new { status = 200 });
 
         }
 
@@ -103,7 +106,97 @@ namespace OnlineTutorApp.Controllers
             };
 
             return PartialView("_LoadLikesPartial", playingVideoVM);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddComment(string commentVal, int videoId)
+        {
+            string userId = "";
+            try
+            {
+                userId = _userManager.GetUserAsync(User).GetAwaiter().GetResult().Id;
+            }
+            catch
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            Comment comment = new Comment
+            {
+                CommentDate = DateTime.Now,
+                CommentText = commentVal,
+                VideoId = videoId,
+                AppUserId = userId
+            };
+
+            await _dbContext.Comments.AddAsync(comment);
+            await _dbContext.SaveChangesAsync();
+
+            return Json(new { status = "200" });
+        }
+
+        public async Task<IActionResult> LoadComments(int? videoId)
+        {
+            if (videoId == null)
+                return NotFound();
+
+            PlayingVideoVM videoVM = new PlayingVideoVM
+            {
+                Comments = await _dbContext.Comments
+                                                .Include(x => x.AppUser)
+                                                    .Where(x => x.VideoId == videoId)
+                                                        .OrderByDescending(x => x.CommentDate).ToListAsync()
+            };
+
+            return PartialView("_LoadCommentsPartial", videoVM);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> LikeCourse(int courseId)
+        {
+            if (courseId == null || courseId == 0)
+                return NotFound();
+
+            string userId = "";
+            string heartStyle = "";
+            try
+            {
+                userId = _userManager.GetUserAsync(User).GetAwaiter().GetResult().Id;
+            }
+            catch
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+
+            LikeForCourse likeForCourseFromDb = _dbContext.LikeForCourses.Where(x => x.CourseId == courseId && x.AppUserId == userId).FirstOrDefault();
+
+            if (likeForCourseFromDb == null)
+            {
+                LikeForCourse likeForCourse = new LikeForCourse
+                {
+                    AppUserId = userId,
+                    CourseId = courseId,
+                    Liked = true
+                };
+                _dbContext.Add(likeForCourse);
+                _dbContext.SaveChanges();
+
+                heartStyle = "fas";
+            }
+
+            else
+            {
+                _dbContext.Remove(likeForCourseFromDb);
+                _dbContext.SaveChanges();
+
+                heartStyle = "far";
+            }
+
+            int likeCount = _dbContext.LikeForCourses.Where(x => x.CourseId == courseId).Count();
+
+            return Json(new { status = 200, count = likeCount, heart = heartStyle });
 
         }
+
     }
 }

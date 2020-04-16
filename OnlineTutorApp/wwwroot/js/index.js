@@ -10,6 +10,8 @@ function showImage() {
     }
 }
 
+
+
 function tabContentClick() {
     let tabContentChildren = this.children;
     for (let child of tabContentChildren) {
@@ -33,18 +35,34 @@ $(document).ready(function () {
     }
 
 
+    let courseLikes = document.querySelectorAll(".course-like");
+    for (let like of courseLikes) {
+        like.firstElementChild.addEventListener("click", function () {
+            let courseId = like.querySelector(".courseId").value;
+            $.ajax({
+                url: "/Ajax/LikeCourse",
+                method: "POST",
+                data: { courseId: courseId },
+                success: function (res) {
+                    like.lastElementChild.innerHTML = res.count;
+                    like.firstElementChild.classList.remove("fas","far");
+                    like.firstElementChild.classList.add(res.heart);
+                }
+            });
+        });
+    }
+
     /////Comment
 
     $(document).on("click", "#btn_comment", function () {
 
-        var videoId = $("#videoId").val();
-        var statusCode = "";
+        let videoId = $("#videoId").val();
+        let statusCode = "";
+        let commentCountTex = document.getElementById("commentCount").textContent;
+        let commentCountStr = commentCountTex.split(" comments");
+        let commentCount = parseInt(commentCountStr);
+        let comment = $("#commentText").val();
 
-        var commentCountTex = document.getElementById("commentCount").textContent;
-        var commentCountStr = commentCountTex.split(" comments");
-        var commentCount = parseInt(commentCountStr);
-
-        var comment = $("#commentText").val();
         if (comment != '') {
             $.ajax({
                 url: "/Ajax/AddComment",
@@ -61,7 +79,7 @@ $(document).ready(function () {
                             success: function (datas) {
                                 $("#comments").html(datas);
                                 $("#commentText").val('');
-                                var newCount = commentCount + 1;
+                                let newCount = commentCount + 1;
                                 document.getElementById("commentCount").innerText = newCount + " comments";
                             }
                         });
@@ -77,9 +95,8 @@ $(document).ready(function () {
         let videoId = $("#videoId").val();
         let likeCount = parseInt(document.getElementById("like_Count").textContent);
         let dislikeCount = parseInt(document.getElementById("dislike_Count").textContent);
-        alert(likeCount + " " + dislikeCount);
         $.ajax({
-            url: "/Ajax/Like",
+            url: "/Ajax/LikeVideo",
             data: { videoId: videoId },
             method: "Post",
             success: function (res) {
@@ -92,9 +109,7 @@ $(document).ready(function () {
                         method: "GET",
                         success: function (datas) {
                             $("#rating").html(datas);
-
                         }
-
                     });
 
                 }
@@ -102,15 +117,14 @@ $(document).ready(function () {
         });
 
     });
+
     //dislike
     $(document).on("click", "#btn_dislike", function () {
         let videoId = $("#videoId").val();
         let likeCount = parseInt(document.getElementById("like_Count").textContent);
         let dislikeCount = parseInt(document.getElementById("dislike_Count").textContent);
-
-        // alert(likeCount + " " + dislikeCount);
         $.ajax({
-            url: "/Ajax/DisLike",
+            url: "/Ajax/DisLikeVideo",
             data: { videoId: videoId },
             method: "Post",
             success: function (res) {
@@ -123,13 +137,17 @@ $(document).ready(function () {
                         method: "GET",
                         success: function (datas) {
                             $("#rating").html(datas);
-
                         }
                     });
                 }
             }
         });
     });
+
+
+
+
+
 
 
 });

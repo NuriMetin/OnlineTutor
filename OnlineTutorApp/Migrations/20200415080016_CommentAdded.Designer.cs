@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineTutorApp.Data;
 
 namespace OnlineTutorApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200415080016_CommentAdded")]
+    partial class CommentAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -367,73 +369,6 @@ namespace OnlineTutorApp.Migrations
                     );
                 });
 
-            modelBuilder.Entity("OnlineTutorApp.Models.Group", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .IsRequired();
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Groups");
-
-                    b.HasData(
-                        new { ID = 1, Name = "P405" },
-                        new { ID = 2, Name = "686a2" },
-                        new { ID = 3, Name = "P407" },
-                        new { ID = 4, Name = "P403" }
-                    );
-                });
-
-            modelBuilder.Entity("OnlineTutorApp.Models.GroupRole", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("RoleName")
-                        .IsRequired();
-
-                    b.HasKey("ID");
-
-                    b.ToTable("GroupRoles");
-                });
-
-            modelBuilder.Entity("OnlineTutorApp.Models.GroupUserCourse", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AppUserId");
-
-                    b.Property<int>("CourseId");
-
-                    b.Property<int>("GroupId");
-
-                    b.Property<int?>("GroupRoleID");
-
-                    b.Property<int>("RoleId");
-
-                    b.Property<string>("UserId")
-                        .IsRequired();
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("AppUserId");
-
-                    b.HasIndex("CourseId");
-
-                    b.HasIndex("GroupId");
-
-                    b.HasIndex("GroupRoleID");
-
-                    b.ToTable("GroupsUsersCourses");
-                });
-
             modelBuilder.Entity("OnlineTutorApp.Models.LikeForCourse", b =>
                 {
                     b.Property<string>("ID")
@@ -680,27 +615,6 @@ namespace OnlineTutorApp.Migrations
                         .WithMany("DidacticMaterials")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("OnlineTutorApp.Models.GroupUserCourse", b =>
-                {
-                    b.HasOne("OnlineTutorApp.Models.AppUser", "AppUser")
-                        .WithMany("GroupUserCourses")
-                        .HasForeignKey("AppUserId");
-
-                    b.HasOne("OnlineTutorApp.Models.Course", "Course")
-                        .WithMany("GroupUserCourses")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("OnlineTutorApp.Models.Group", "Group")
-                        .WithMany("GroupUserCourses")
-                        .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("OnlineTutorApp.Models.GroupRole", "GroupRole")
-                        .WithMany("GroupUserCourses")
-                        .HasForeignKey("GroupRoleID");
                 });
 
             modelBuilder.Entity("OnlineTutorApp.Models.LikeForCourse", b =>

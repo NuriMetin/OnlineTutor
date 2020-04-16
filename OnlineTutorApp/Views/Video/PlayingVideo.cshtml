@@ -29,7 +29,7 @@
                         </div>
                     </div>
                 </div>
-                @*<div class="comment">
+                <div class="comment">
                     @{ int commentCount = 0;
                         try { commentCount=Model.Comments.Count();} catch { commentCount = 0; }
                         }
@@ -39,26 +39,35 @@
                         <input type="button" class="btn btn-primary btn-comment" id="btn_comment" value="Comment">
                     </form>
                     <div id="comments">
-                        @foreach (var comment in Model.Comments)
-                        {
-                            <div class="users-comment">
-                                <div class="username">
-                                    @comment.AppUser.Name @comment.AppUser.Surname
-                                    <span class="comment-date">@comment.CommentDate</span>
-                                </div>
-                                <span class="comment-content">
-                                    @comment.CommentText
-                                </span>
-                            </div>
+                        @{
+                            try
+                            {
+                                @foreach (var comment in Model.Comments)
+                                {
+                                    <div class="users-comment">
+                                        <div class="username">
+                                            @comment.AppUser.Name @comment.AppUser.Surname
+                                            <span class="comment-date">@comment.CommentDate</span>
+                                        </div>
+                                        <span class="comment-content">
+                                            @comment.CommentText
+                                        </span>
+                                    </div>
+                                }
+                            }
+                            catch
+                            {
+                                
+                            }
                         }
                     </div>
-                </div>*@
+                </div>
             </div>
             <div class="video-secondary">
                 @foreach (var video in Model.Videos)
                 {
                     <div class="secondary">
-                        <form asp-action="CountView" asp-controller="VideoCourse" method="post" asp-route-id="@video.ID">
+                        <form asp-action="ViewCount" asp-controller="Video" method="post" asp-route-id="@video.ID">
                             <button id="btn_video" type="submit" style="background:none; border:none; display:flex;">
                                 <video class="video-secondary-video" autoPictureInPicture controlslist>
                                     <source src="~/videos/@video.Path" type="video/mp4" />

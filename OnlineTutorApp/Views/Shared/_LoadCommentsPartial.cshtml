@@ -1,0 +1,14 @@
+﻿@model PlayingVideoVM
+
+@foreach (var comment in Model.Comments)
+{
+    <div class="users-comment">
+        <div class="username">
+            @comment.AppUser.Name @comment.AppUser.Surname
+            <span class="comment-date">@comment.CommentDate</span>
+        </div>
+        <span class="comment-content">
+            @comment.CommentText
+        </span>
+    </div>
+}

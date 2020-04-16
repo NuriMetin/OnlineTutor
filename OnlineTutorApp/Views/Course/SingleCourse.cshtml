@@ -118,16 +118,18 @@
             @foreach (var video in Model.Videos)
             {
                 <div class="img">
-                    <a asp-controller="Video" asp-action="PlayingVideo" asp-route-id="@video.ID">
-                        <div class="card-caption">
-                            <div class="card-style">
-                                <video class="video-secondary-video" style="height:175px; width:100%;" autoPictureInPicture controlslist>
-                                    <source src="~/videos/@video.Path" type="video/mp4">
-                                </video>
-                                <h5 style="padding-bottom:15px; font-size:1rem; font-weight:bold;">@video.Title</h5>
+                    <form method="post" asp-controller="Video" asp-action="ViewCount" asp-route-id="@video.ID">
+                        <button style="border:none; background-color:transparent; cursor:pointer;" type="submit">
+                            <div class="card-caption">
+                                <div class="card-style">
+                                    <video class="video-secondary-video" style="height:175px; width:100%;" autoPictureInPicture controlslist>
+                                        <source src="~/videos/@video.Path" type="video/mp4">
+                                    </video>
+                                    <h5 style="padding-bottom:15px; font-size:1rem; font-weight:bold;">@video.Title</h5>
+                                </div>
                             </div>
-                        </div>
-                    </a>
+                        </button>
+                    </form>
                 </div>
             }
 
