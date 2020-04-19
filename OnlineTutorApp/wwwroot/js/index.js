@@ -34,7 +34,24 @@ $(document).ready(function () {
         });
     }
 
+   
+    $(document).on("change", "#coursePaymentForm", function () {
+      
+        let isFree = $("#coursePaymentForm").val();
+        let amount = $("#courseAmount");
+        alert(isFree + " " + amount.css("display"));
+        if (isFree == "false") {
+            $("#courseAmount").css("display", "block");   
+        }
+        else
+        {
+            $("#courseAmount").css("display", "none");
+        }
+    });
 
+    
+
+    //Likes for courses
     let courseLikes = document.querySelectorAll(".course-like");
     for (let like of courseLikes) {
         like.firstElementChild.addEventListener("click", function () {

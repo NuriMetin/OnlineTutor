@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -23,9 +25,13 @@ namespace OnlineTutorApp.Models
 
         public decimal Amount { get; set; }
 
+        [Required]
         public bool IsFree { get; set; }
 
         public int ViewCount { get; set; }
+
+        [NotMapped]
+        public IFormFile Photo { get; set; }
 
         [Required]
         public int CategoryId { get; set; }

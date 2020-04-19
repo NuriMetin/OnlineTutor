@@ -44,6 +44,7 @@ C:\Users\Admin\Desktop\OnlineTutor\OnlineTutorApp\obj\Debug\netcoreapp2.1\Online
 C:\Users\Admin\Desktop\OnlineTutor\OnlineTutorApp\obj\Debug\netcoreapp2.1\Razor\Views\Account\Login.g.cshtml.cs
 C:\Users\Admin\Desktop\OnlineTutor\OnlineTutorApp\obj\Debug\netcoreapp2.1\Razor\Views\Account\Register.g.cshtml.cs
 C:\Users\Admin\Desktop\OnlineTutor\OnlineTutorApp\obj\Debug\netcoreapp2.1\Razor\Views\Ajax\LoadLikes.g.cshtml.cs
+C:\Users\Admin\Desktop\OnlineTutor\OnlineTutorApp\obj\Debug\netcoreapp2.1\Razor\Views\Course\Create.g.cshtml.cs
 C:\Users\Admin\Desktop\OnlineTutor\OnlineTutorApp\obj\Debug\netcoreapp2.1\Razor\Views\Course\SingleCourse.g.cshtml.cs
 C:\Users\Admin\Desktop\OnlineTutor\OnlineTutorApp\obj\Debug\netcoreapp2.1\Razor\Views\Home\Index.g.cshtml.cs
 C:\Users\Admin\Desktop\OnlineTutor\OnlineTutorApp\obj\Debug\netcoreapp2.1\Razor\Views\Shared\Error.g.cshtml.cs
@@ -51,6 +52,7 @@ C:\Users\Admin\Desktop\OnlineTutor\OnlineTutorApp\obj\Debug\netcoreapp2.1\Razor\
 C:\Users\Admin\Desktop\OnlineTutor\OnlineTutorApp\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_Layout.g.cshtml.cs
 C:\Users\Admin\Desktop\OnlineTutor\OnlineTutorApp\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_LoadCommentsPartial.g.cshtml.cs
 C:\Users\Admin\Desktop\OnlineTutor\OnlineTutorApp\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_LoadLikesPartial.g.cshtml.cs
+C:\Users\Admin\Desktop\OnlineTutor\OnlineTutorApp\obj\Debug\netcoreapp2.1\Razor\Views\Video\Create.g.cshtml.cs
 C:\Users\Admin\Desktop\OnlineTutor\OnlineTutorApp\obj\Debug\netcoreapp2.1\Razor\Views\Video\PlayingVideo.g.cshtml.cs
 C:\Users\Admin\Desktop\OnlineTutor\OnlineTutorApp\obj\Debug\netcoreapp2.1\Razor\Views\_ViewImports.g.cshtml.cs
 C:\Users\Admin\Desktop\OnlineTutor\OnlineTutorApp\obj\Debug\netcoreapp2.1\Razor\Views\_ViewStart.g.cshtml.cs

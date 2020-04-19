@@ -3,6 +3,6 @@
     Layout = null;
 }
 
-<a class="like" id="btn_like" href="#"><i class="fas fa-thumbs-up"></i></a> <span id="like_Count">@Model.Likes</span>
-<a class="dislike" id="btn_dislike" href="#"><i class="fas fa-thumbs-down"></i></a> <span id="dislike_Count">@Model.DisLikes</span>
+<a class="like" id="btn_like" href="#"><i class="fas fa-thumbs-up"></i></a> <span id="like_Count">@Model.LikesForVideos.Where(x => x.Liked == true).Count()</span>
+<a class="dislike" id="btn_dislike" href="#"><i class="fas fa-thumbs-down"></i></a> <span id="dislike_Count">@Model.LikesForVideos.Where(x => x.Liked == false).Count()</span>
 

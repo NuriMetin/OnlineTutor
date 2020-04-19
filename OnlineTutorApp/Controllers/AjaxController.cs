@@ -26,34 +26,32 @@ namespace OnlineTutorApp.Controllers
         {
             AppUser user = _userManager.GetUserAsync(User).GetAwaiter().GetResult();
 
-            var isLiked = await _dbContext.LikeForVideos.Where(x => x.VideoId == videoId && x.Liked == true && x.AppUserId == user.Id).FirstOrDefaultAsync();
+            LikeForVideo likeForVideoFromDb = await _dbContext.LikeForVideos.Where(x => x.AppUserId == user.Id && x.VideoId == videoId).FirstOrDefaultAsync();
 
-            var IsDisliked = await _dbContext.LikeForVideos.Where(x => x.VideoId == videoId && x.Liked == false && x.AppUserId == user.Id).FirstOrDefaultAsync();
-
-
-            if (isLiked != null)
+            if (likeForVideoFromDb != null)
             {
-                return Json(new { status = "400" });
+                if (likeForVideoFromDb.Liked == false)
+                {
+                    likeForVideoFromDb.Liked = true;
+                    await _dbContext.SaveChangesAsync();
+                    return Json(new { status = "200" });
+                }
             }
 
-
-            LikeForVideo like = new LikeForVideo
+            else
             {
-                VideoId = videoId,
-                Liked = true,
-                AppUserId = user.Id
-            };
-
-            await _dbContext.LikeForVideos.AddAsync(like);
-
-            if (IsDisliked != null)
-            {
-                _dbContext.LikeForVideos.Remove(IsDisliked);
+                LikeForVideo likeForVideo = new LikeForVideo
+                {
+                    AppUserId = user.Id,
+                    VideoId = videoId,
+                    Liked = true
+                };
+                await _dbContext.LikeForVideos.AddAsync(likeForVideo);
+                await _dbContext.SaveChangesAsync();
+                return Json(new { status = "200" });
             }
 
-            await _dbContext.SaveChangesAsync();
-
-            return Json(new { status = "200" });
+            return Json(new { status = "400" });
         }
 
         [HttpPost]
@@ -61,49 +59,71 @@ namespace OnlineTutorApp.Controllers
         {
             AppUser user = _userManager.GetUserAsync(User).GetAwaiter().GetResult();
 
-            if (user == null)
-                return RedirectToAction("Login", "Account");
+            LikeForVideo likeForVideoFromDb = await _dbContext.LikeForVideos.Where(x => x.AppUserId == user.Id && x.VideoId == videoId).FirstOrDefaultAsync();
 
-            var isLiked = await _dbContext.LikeForVideos.Where(x => x.VideoId == videoId && x.Liked == true && x.AppUserId == user.Id).FirstOrDefaultAsync();
-
-            var IsDisliked = await _dbContext.LikeForVideos.Where(x => x.VideoId == videoId && x.Liked == false && x.AppUserId == user.Id).FirstOrDefaultAsync();
-
-            if (IsDisliked != null)
+            if (likeForVideoFromDb != null)
             {
-                return Json(new { status = 400 });
+                if (likeForVideoFromDb.Liked == true)
+                {
+                    likeForVideoFromDb.Liked = false;
+                    await _dbContext.SaveChangesAsync();
+                    return Json(new { status = "200" });
+                }
             }
 
-            LikeForVideo dislike = new LikeForVideo
+            else
             {
-                VideoId = videoId,
-                Liked = false,
-                AppUserId = user.Id
-            };
-
-            await _dbContext.LikeForVideos.AddAsync(dislike);
-
-            if (isLiked != null)
-            {
-                _dbContext.LikeForVideos.Remove(isLiked);
+                LikeForVideo likeForVideo = new LikeForVideo
+                {
+                    AppUserId = user.Id,
+                    VideoId = videoId,
+                    Liked = false
+                };
+                await _dbContext.LikeForVideos.AddAsync(likeForVideo);
+                await _dbContext.SaveChangesAsync();
+                return Json(new { status = "200" });
             }
 
-            await _dbContext.SaveChangesAsync();
-
-            return Json(new { status = 200 });
+            return Json(new { status = "400" });
 
         }
 
         public async Task<IActionResult> LoadLikes(int videoId)
         {
-            int likes = await _dbContext.LikeForVideos.Where(x => x.VideoId == videoId && x.Liked == true).CountAsync();
+            string userId = _userManager.GetUserAsync(User).GetAwaiter().GetResult().Id;
+            ViewBag.UserId = userId;
+            int userLikeCount = 0;
+            int userDisLikeCount = 0;
+            string likeStyle = "far";
+            string disLikeStyle = "far";
 
-            int dislikes = await _dbContext.LikeForVideos.Where(x => x.VideoId == videoId && x.Liked == false).CountAsync();
+            PlayingVideoVM playingVideoVM = new PlayingVideoVM();
 
-            PlayingVideoVM playingVideoVM = new PlayingVideoVM
+            playingVideoVM.LikesForVideos = await _dbContext.LikeForVideos.Where(x => x.VideoId == videoId).ToListAsync();
+
+            foreach (var item in playingVideoVM.LikesForVideos)
             {
-                Likes = likes,
-                DisLikes = dislikes
-            };
+                if (item.Liked == true && item.AppUserId == userId)
+                {
+                    userLikeCount += 1;
+                }
+                if (item.Liked == false && item.AppUserId == userId)
+                {
+                    userDisLikeCount += 1;
+                }
+            }
+
+            if (userLikeCount > 0)
+            {
+                likeStyle = "fas";
+            }
+
+            if (userDisLikeCount > 0)
+            {
+                disLikeStyle = "fas";
+            }
+            ViewBag.LikeStyle = likeStyle;
+            ViewBag.DisLikeStyle = disLikeStyle;
 
             return PartialView("_LoadLikesPartial", playingVideoVM);
         }
@@ -153,20 +173,21 @@ namespace OnlineTutorApp.Controllers
         [HttpPost]
         public async Task<IActionResult> LikeCourse(int courseId)
         {
-            if (courseId == null || courseId == 0)
+            if (courseId == 0)
                 return NotFound();
 
             string userId = "";
             string heartStyle = "";
+
             try
             {
                 userId = _userManager.GetUserAsync(User).GetAwaiter().GetResult().Id;
             }
+
             catch
             {
                 return RedirectToAction("Login", "Account");
             }
-
 
             LikeForCourse likeForCourseFromDb = _dbContext.LikeForCourses.Where(x => x.CourseId == courseId && x.AppUserId == userId).FirstOrDefault();
 
@@ -178,6 +199,7 @@ namespace OnlineTutorApp.Controllers
                     CourseId = courseId,
                     Liked = true
                 };
+
                 _dbContext.Add(likeForCourse);
                 _dbContext.SaveChanges();
 
@@ -195,7 +217,6 @@ namespace OnlineTutorApp.Controllers
             int likeCount = _dbContext.LikeForCourses.Where(x => x.CourseId == courseId).Count();
 
             return Json(new { status = 200, count = likeCount, heart = heartStyle });
-
         }
 
     }

@@ -24,8 +24,8 @@
                             </span>
                         </div>
                         <div class="right" id="rating">
-                            <button class="like" id="btn_like" style="cursor:pointer; border:none; background-color:transparent;"><i class="fas fa-thumbs-up"></i></button> <span id="like_Count">@Model.Likes</span>
-                            <button class="dislike" id="btn_dislike" style="cursor:pointer;  border:none; background-color:transparent;"><i class="fas fa-thumbs-down"></i></button> <span id="dislike_Count">@Model.DisLikes</span>
+                            <button class="like" id="btn_like" style="cursor:pointer; border:none; background-color:transparent;"><i class="@ViewBag.LikeStyle fa-thumbs-up"></i></button> <span id="like_Count">@Model.LikesForVideos.Where(x=>x.Liked==true).Count()</span>
+                            <button class="dislike" id="btn_dislike" style="cursor:pointer;  border:none; background-color:transparent;"><i class="@ViewBag.DisLikeStyle fa-thumbs-down"></i></button> <span id="dislike_Count">@Model.LikesForVideos.Where(x=>x.Liked==false).Count()</span>
                         </div>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                 {
                     <div class="secondary">
                         <form asp-action="ViewCount" asp-controller="Video" method="post" asp-route-id="@video.ID">
-                            <button id="btn_video" type="submit" style="background:none; border:none; display:flex;">
+                            <button id="btn_video" type="submit" style="background:none; border:none; cursor:pointer; display:flex;">
                                 <video class="video-secondary-video" autoPictureInPicture controlslist>
                                     <source src="~/videos/@video.Path" type="video/mp4" />
                                 </video>

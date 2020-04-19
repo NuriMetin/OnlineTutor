@@ -7,15 +7,18 @@ using Microsoft.AspNetCore.Mvc;
 using OnlineTutorApp.Data;
 using OnlineTutorApp.Models;
 using OnlineTutorApp.ViewModels;
+using Microsoft.AspNetCore.Identity;
 
 namespace OnlineTutorApp.Controllers
 {
     public class VideoController : Controller
     {
+        private readonly UserManager<AppUser> _userManager;
         private readonly AppDbContext _dbContext;
-        public VideoController(AppDbContext dbContext)
+        public VideoController(AppDbContext dbContext, UserManager<AppUser> userManager)
         {
             _dbContext = dbContext;
+            _userManager = userManager;
         }
         public async Task<IActionResult> PlayingVideo(int? id)
         {
@@ -24,9 +27,16 @@ namespace OnlineTutorApp.Controllers
 
             PlayingVideoVM videoVM = new PlayingVideoVM();
 
+            string userId = _userManager.GetUserAsync(User).GetAwaiter().GetResult().Id;
+            ViewBag.UserId = userId;
+            int userLikeCount = 0;
+            int userDisLikeCount = 0;
+            string likeStyle = "far";
+            string disLikeStyle = "far";
+
             Video video = await _dbContext.Videos
-                                            .Include(x=>x.Course)
-                                                .Where(x=>x.ID==id).FirstOrDefaultAsync();
+                                            .Include(x => x.Course)
+                                                .Where(x => x.ID == id).FirstOrDefaultAsync();
 
             videoVM.Video = video;
 
@@ -44,12 +54,35 @@ namespace OnlineTutorApp.Controllers
             }
 
             videoVM.Videos = await _dbContext.Videos
-                                                .Include(x=>x.Course)
-                                                    .Where(x=>x.ID!=id && x.CourseId==video.CourseId).ToListAsync();
+                                                .Include(x => x.Course)
+                                                    .Where(x => x.ID != id && x.CourseId == video.CourseId).ToListAsync();
 
-            videoVM.Likes = await _dbContext.LikeForVideos.Where(x=>x.Liked==true && x.VideoId==id).CountAsync();
 
-            videoVM.DisLikes = await _dbContext.LikeForVideos.Where(x => x.Liked == false && x.VideoId == id).CountAsync();
+            videoVM.LikesForVideos = await _dbContext.LikeForVideos.Where(x => x.VideoId == id).ToListAsync();
+
+            foreach (var item in videoVM.LikesForVideos)
+            {
+                if (item.Liked == true && item.AppUserId == userId)
+                {
+                    userLikeCount += 1;
+                }
+                if (item.Liked == false && item.AppUserId == userId)
+                {
+                    userDisLikeCount += 1;
+                }
+            }
+
+            if (userLikeCount > 0)
+            {
+                likeStyle = "fas";
+            }
+
+            if (userDisLikeCount > 0)
+            {
+                disLikeStyle = "fas";
+            }
+            ViewBag.LikeStyle = likeStyle;
+            ViewBag.DisLikeStyle = disLikeStyle;
 
             return View(videoVM);
         }
@@ -72,6 +105,12 @@ namespace OnlineTutorApp.Controllers
             _dbContext.SaveChanges();
 
             return RedirectToAction("PlayingVideo", "Video", new { id = id });
+        }
+
+        public async Task<IActionResult> Create()
+        {
+
+            return RedirectToAction("");
         }
     }
 }

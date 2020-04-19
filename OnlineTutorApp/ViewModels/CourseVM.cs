@@ -11,5 +11,7 @@ namespace OnlineTutorApp.ViewModels
         public Course Course { get; set; }
         public CourseUser CourseUser { get; set; }
         public IEnumerable<Video> Videos { get; set; }
+        public IEnumerable<Category> Categories { get; set; }
+        public int CategoryId { get; set; }
     }
 }

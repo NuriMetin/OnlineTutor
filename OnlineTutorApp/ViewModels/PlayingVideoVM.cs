@@ -10,8 +10,7 @@ namespace OnlineTutorApp.ViewModels
     public class PlayingVideoVM
     {
         public List<Video> Videos { get; set; }
-        public int Likes { get; set; }
-        public int DisLikes { get; set; }
+        public IEnumerable<LikeForVideo> LikesForVideos { get; set; }
         public IEnumerable<Comment> Comments { get; set; }
         public Video Video { get; set; }
     }

@@ -1,0 +1,61 @@
+﻿@model CourseVM
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="register-container pt-5 pb-5" style="height:500px;">
+    <div class="container-fluid register">
+        <form method="post" asp-action="Create" asp-controller="Course" enctype="multipart/form-data">
+            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="form-group col-lg-9">
+                        <label class="control-label">Başlıq</label>
+                        <input class="form-control" style="height:30px !important;" asp-for="Course.Title" />
+                        <span class="text-danger" asp-validation-for="Course.Title"></span>
+                    </div>
+                    <div class="form-group col-lg-9">
+                        <label class="control-label">Description</label>
+                        <input class="form-control" style="height:30px !important;" asp-for="Course.Content" />
+                        <span class="text-danger" asp-validation-for="Course.Content"></span>
+                    </div>
+                    <div class="form-group col-lg-9">
+                        <label class="control-label">Kateqoriya</label>
+                        <select class="form-control" style="height:30px !important;" asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories,"ID", "Name"))">
+                            <option value="">--Kategoriyanı seç--</option>
+                        </select>
+                        <span class="text-danger" asp-validation-for="CategoryId"></span>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group col-lg-12">
+                        <label class="control-label">Ödəniş forması</label>
+                        <select id="coursePaymentForm" class="form-control" asp-for="Course.IsFree">
+                            <option value="false">Pullu</option>
+                            <option value="true">Pulsuz</option>
+                        </select>
+                        <span class="text-danger" asp-validation-for="Course.IsFree"></span>
+                    </div>
+                    <div id="courseAmount" class="form-group col-lg-12">
+                        <label class="control-label">Qiymət</label>
+                        <input type="number" class="form-control" style="height:30px !important;" asp-for="Course.Amount" />
+                        <span class="text-danger" asp-validation-for="Course.Amount"></span>
+                    </div>
+                </div>
+                <div class="col-lg-5 text-right">
+                    <div class="col-lg-7 text-right">
+                        <div id="imgPreview">
+                            <img src="" style=" border:1px solid black; height:200px; width:100%;" id="image">
+                        </div>
+                        <input style="margin-top:5px" ; accept="image/*" asp-for="Course.Photo" type="file" onchange="showImage.call(this)" />
+                        <span class="text-danger red" asp-validation-for="Course.Photo"></span>
+                    </div>
+                </div>
+                <div class="btn-register pt-5 text-center col-lg-12">
+                    <input type="submit" class="btn btn-primary" value="Saxla" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>*@
+<script src="~/js/index.js"></script>
