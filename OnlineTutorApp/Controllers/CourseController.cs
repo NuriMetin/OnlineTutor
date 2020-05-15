@@ -10,6 +10,7 @@ using OnlineTutorApp.Data;
 using static OnlineTutorApp.Extensions.IFormFileExtension;
 using OnlineTutorApp.Models;
 using OnlineTutorApp.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace OnlineTutorApp.Controllers
 {
@@ -61,7 +62,7 @@ namespace OnlineTutorApp.Controllers
             return View(courseVM);
         }
 
-
+        //[Authorize]
         public async Task<IActionResult> Create()
         {
             CourseVM courseVM = new CourseVM
@@ -73,21 +74,21 @@ namespace OnlineTutorApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        //[Authorize]
         public async Task<IActionResult> Create(CourseVM courseVM)
         {
             courseVM.Categories = await _dbContext.Categories.ToListAsync();
-            if (!ModelState.IsValid)
-            {
-                return View(courseVM);
-            }
+            Course course = new Course();
+            var user = await _dbContext.Users.SingleOrDefaultAsync(x => _userManager.FindByNameAsync(User.Identity.Name).GetAwaiter().GetResult().Id == x.Id);
 
             if (courseVM.Course.IsFree != true)
             {
-                if (courseVM.Course.Amount == 0 || courseVM.Course.Amount==null)
+                if (courseVM.Course.Amount == 0 || courseVM.Course.Amount == null)
                 {
                     ModelState.AddModelError("Course.Amount", "Boş ola bilməz!!!");
                     return View(courseVM);
                 }
+                course.Amount = courseVM.Course.Amount;
             }
 
             if (courseVM.Course.Photo == null)
@@ -101,11 +102,50 @@ namespace OnlineTutorApp.Controllers
                 ModelState.AddModelError("Course.Photo", "Fayl şəkil tipində olmalıdır!!!");
                 return View(courseVM);
             }
-           // string image = await courseVM.Course.Photo.SaveAsync(_env.WebRootPath, "images", "courses");
+
+            string image = await courseVM.Course.Photo.SaveAsync(_env.WebRootPath, "images", "courses");
+
+            course.CategoryId = courseVM.CategoryId;
+            course.Content = courseVM.Course.Content;
+            course.IsFree = courseVM.Course.IsFree;
+            course.Image = image;
+            course.PublishDate = DateTime.Now;
+            course.Title = courseVM.Course.Title;
+
+            await _dbContext.AddAsync(course);
+
+            CourseUser courseUser = new CourseUser
+            {
+                AppUserId = user.Id,
+                CourseId = course.ID,
+                IsAuthor = true
+            };
+
+            await _dbContext.AddAsync(courseUser);
+            await _dbContext.SaveChangesAsync();
+
+            return RedirectToAction(nameof(OwnCourses));
+        }
+
+        [Authorize]
+        public async Task<IActionResult> OwnCourses()
+        {
+            var user = await _dbContext.Users.FirstOrDefaultAsync(x => _userManager.FindByNameAsync(User.Identity.Name).GetAwaiter().GetResult().Id == x.Id);
+
+            CourseVM courseVM = new CourseVM
+            {
+                CourseUsers = await _dbContext.CoursesUsers
+                                                 .Include(x => x.Course)
+                                                    .Include(x => x.Course.Category)
+                                                        .Include(x => x.AppUser)
+                                                              .Where(x => x.AppUserId == user.Id).ToListAsync(),
+
+                LikeForCourses=await _dbContext.LikeForCourses.Include(x=>x.Course).ToListAsync()
+            };
 
 
 
-            return Content("sfdbs hbc");
+            return View(courseVM);
         }
     }
 }

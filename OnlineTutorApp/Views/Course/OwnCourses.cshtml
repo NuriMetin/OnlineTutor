@@ -1,0 +1,67 @@
+﻿@model CourseVM
+@{
+    ViewData["Title"] = "OwnCourses";
+}
+
+<link href="~/css/index.css" rel="stylesheet" />
+
+<div class="courses pb-5">
+    <div class="popular-course-header">
+        <div class="container">
+            <div class="row">
+                <div class="head">
+                    <h3>Sənin kursların</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="course-body">
+        <div class="container">
+            <div class="row">
+                @for (int i = 0; i < Model.CourseUsers.Count(); i++)
+                {
+                    <input type="hidden" id="userId" value="@ViewBag.UserId" />
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 mt-4">
+                        <div class="card" data-id="2">
+                            <span class="btn-eye"><a asp-controller="Course" asp-action="SingleCourse" asp-route-id="@Model.CourseUsers.ElementAt(i).Course.ID"><i class="fas fa-eye"></i>Bax</a></span>
+                            <div class="narrow"></div>
+                            <img src="~/images/courses/@Model.CourseUsers.ElementAt(i).Course.Image" class="post-img" alt="....">
+                            <span class="category">@Model.CourseUsers.ElementAt(i).Course.Category.Name</span>
+                            <div class="card-body">
+                                <h5 class="card-title"><a href="single-course.html">@Model.CourseUsers.ElementAt(i).Course.Title</a> </h5>
+                                <p class="card-text">@Model.CourseUsers.ElementAt(i).Course.Content</p>
+                                <div class="course-meta">
+                                    <p class="course-author">
+                                        <a href="#">@Model.CourseUsers.ElementAt(i).AppUser.Name @Model.CourseUsers.ElementAt(i).AppUser.Surname</a> <span>tərəfindən</span>
+                                    </p>
+                                    <p class="price">$ @Model.CourseUsers.ElementAt(i).Course.Amount</p>
+                                </div>
+                                <div class="post-meta">
+                                    <ul>
+                                        <li class="p"><i class="fas fa-eye"></i> 234 baxış</li>
+                                        <li style="left:48%;">
+                                            <i class="fas fa-heart"></i>
+                                            @{
+                                                int likeCount;
+                                                try
+                                                {
+                                                    likeCount = @Model.LikeForCourses.Where(x => x.Course.ID == Model.CourseUsers.ElementAt(i).Course.ID).Count();
+                                                }
+                                                catch
+                                                {
+                                                    likeCount = 0;
+                                                }
+                                            }
+                                            @likeCount
+                                        </li>
+                                        <li class="add-to-card"><i class="fas fa-plus"></i> Əlavə et</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

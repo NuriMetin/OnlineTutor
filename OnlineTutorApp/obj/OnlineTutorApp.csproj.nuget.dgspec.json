@@ -1,24 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\Desktop\\OnlineTutor\\OnlineTutorApp\\OnlineTutorApp.csproj": {}
+    "D:\\Dərslər\\Programmer\\BackEnd\\Projects\\OnlineTutor\\OnlineTutor\\OnlineTutorApp\\OnlineTutorApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\Desktop\\OnlineTutor\\OnlineTutorApp\\OnlineTutorApp.csproj": {
+    "D:\\Dərslər\\Programmer\\BackEnd\\Projects\\OnlineTutor\\OnlineTutor\\OnlineTutorApp\\OnlineTutorApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\OnlineTutor\\OnlineTutorApp\\OnlineTutorApp.csproj",
+        "projectUniqueName": "D:\\Dərslər\\Programmer\\BackEnd\\Projects\\OnlineTutor\\OnlineTutor\\OnlineTutorApp\\OnlineTutorApp.csproj",
         "projectName": "OnlineTutorApp",
-        "projectPath": "C:\\Users\\Admin\\Desktop\\OnlineTutor\\OnlineTutorApp\\OnlineTutorApp.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Desktop\\OnlineTutor\\OnlineTutorApp\\obj\\",
+        "projectPath": "D:\\Dərslər\\Programmer\\BackEnd\\Projects\\OnlineTutor\\OnlineTutor\\OnlineTutorApp\\OnlineTutorApp.csproj",
+        "packagesPath": "C:\\Users\\Metin\\.nuget\\packages\\",
+        "outputPath": "D:\\Dərslər\\Programmer\\BackEnd\\Projects\\OnlineTutor\\OnlineTutor\\OnlineTutorApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Metin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.1"
@@ -53,20 +55,27 @@
               "version": "[2.1.2, )"
             },
             "Microsoft.NETCore.App": {
+              "suppressParent": "All",
               "target": "Package",
               "version": "[2.1.0, )",
               "autoReferenced": true
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[2.1.9, )"
+              "version": "[2.1.10, )"
             }
           },
           "imports": [
-            "net461"
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
           ],
           "assetTargetFallback": true,
-          "warn": true
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

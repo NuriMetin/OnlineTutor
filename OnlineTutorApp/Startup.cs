@@ -76,6 +76,7 @@ namespace OnlineTutorApp
             app.UseCookiePolicy();
             app.UseAuthentication();
 
+            //Route admin
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -84,7 +85,7 @@ namespace OnlineTutorApp
                 );
             });
 
-
+            //default root
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

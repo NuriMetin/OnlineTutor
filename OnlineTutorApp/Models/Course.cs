@@ -12,20 +12,20 @@ namespace OnlineTutorApp.Models
     {
         public int ID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Boş ola bilməz")]
         public DateTime PublishDate { get; set; }
 
         public string Image { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Boş ola bilməz")]
         public string Title { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Boş ola bilməz")]
         public string Content { get; set; }
 
         public decimal Amount { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Boş ola bilməz")]
         public bool IsFree { get; set; }
 
         public int ViewCount { get; set; }
@@ -33,7 +33,7 @@ namespace OnlineTutorApp.Models
         [NotMapped]
         public IFormFile Photo { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Boş ola bilməz")]
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
 

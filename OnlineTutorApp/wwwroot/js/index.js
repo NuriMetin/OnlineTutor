@@ -34,7 +34,7 @@ $(document).ready(function () {
         });
     }
 
-   
+   //Course amount form for create action
     $(document).on("change", "#coursePaymentForm", function () {
       
         let isFree = $("#coursePaymentForm").val();
