@@ -138,9 +138,12 @@ namespace OnlineTutorApp.Controllers
                                                  .Include(x => x.Course)
                                                     .Include(x => x.Course.Category)
                                                         .Include(x => x.AppUser)
-                                                              .Where(x => x.AppUserId == user.Id).ToListAsync(),
+                                                            .Include(x=>x.Course.DidacticMaterials)
+                                                                .Include(x=>x.Course.Videos)
+                                                                    .Include(x=>x.Course.Quizzes)
+                                                                        .Where(x => x.AppUserId == user.Id).ToListAsync(),
 
-                LikeForCourses=await _dbContext.LikeForCourses.Include(x=>x.Course).ToListAsync()
+                LikeForCourses = await _dbContext.LikeForCourses.Include(x => x.Course).ToListAsync()
             };
 
 

@@ -1,10 +1,9 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\Metin\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\Metin\\.nuget\\packages",
-      "C:\\Microsoft\\Xamarin\\NuGet",
-      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      "C:\\Users\\metin.n\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\metin.n\\.nuget\\packages",
+      "C:\\Microsoft\\Xamarin\\NuGet"
     ]
   }
 }
