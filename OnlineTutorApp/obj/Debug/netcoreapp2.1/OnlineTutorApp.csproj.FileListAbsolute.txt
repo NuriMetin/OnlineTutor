@@ -146,3 +146,4 @@ D:\OwnProjects\OnlineTutor\OnlineTutorApp\obj\Debug\netcoreapp2.1\OnlineTutorApp
 D:\OwnProjects\OnlineTutor\OnlineTutorApp\obj\Debug\netcoreapp2.1\OnlineTutorApp.genruntimeconfig.cache
 D:\OwnProjects\OnlineTutor\OnlineTutorApp\obj\Debug\netcoreapp2.1\OnlineTutorApp.csproj.CopyComplete
 D:\OwnProjects\OnlineTutor\OnlineTutorApp\obj\Debug\netcoreapp2.1\Razor\Views\Video\List.cshtml.g.cs
+D:\OwnProjects\OnlineTutor\OnlineTutorApp\obj\Debug\netcoreapp2.1\Razor\Views\DidacticMaterial\List.cshtml.g.cs

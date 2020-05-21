@@ -82,7 +82,7 @@ using OnlineTutorApp.ViewModels;
             WriteLiteral("\r\n<div class=\"container\">\r\n    ");
             EndContext();
             BeginContext(94, 183, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "341cfee9d79f4b0eb689dd7d64dce594", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9e1055ebd14044c6b4ca6395eaf21f78", async() => {
                 BeginContext(198, 75, true);
                 WriteLiteral("<i style=\"color:white;\" class=\"fa fa-plus\" aria-hidden=\"true\"></i> Əlavə et");
                 EndContext();
@@ -140,7 +140,7 @@ using OnlineTutorApp.ViewModels;
             WriteLiteral("                    <td scope=\"col\" sstyle=\"padding-right:0 !important;\">");
             EndContext();
             BeginContext(1017, 110, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "b598f4d35db946429da5a2b671254465", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "56f2863eb0824d41b0281905b175a0a1", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -176,7 +176,7 @@ AddHtmlAttributeValue("", 1079, Model.CourseUsers.ElementAt(i).Course.Image, 107
             WriteLiteral("</td>\r\n                    <td scope=\"col\">");
             EndContext();
             BeginContext(1245, 148, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ff11302bff7476ca8722ee374a36dc1", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "37668739b05c476684b20bdf46d89a66", async() => {
                 BeginContext(1326, 63, false);
 #line 28 "D:\OwnProjects\OnlineTutor\OnlineTutorApp\Views\Course\OwnCourses.cshtml"
                                                                                                                Write(Model.CourseUsers.ElementAt(i).Course.DidacticMaterials.Count());
@@ -217,7 +217,7 @@ AddHtmlAttributeValue("", 1079, Model.CourseUsers.ElementAt(i).Course.Image, 107
             WriteLiteral("</td>\r\n                    <td scope=\"col\">");
             EndContext();
             BeginContext(1436, 126, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7733a7eeddf04481afef9712608965a6", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2f910a52e3de43cca70b5b2b5e7e03a7", async() => {
                 BeginContext(1506, 52, false);
 #line 29 "D:\OwnProjects\OnlineTutor\OnlineTutorApp\Views\Course\OwnCourses.cshtml"
                                                                                                     Write(Model.CourseUsers.ElementAt(i).Course.Videos.Count());
@@ -258,7 +258,7 @@ AddHtmlAttributeValue("", 1079, Model.CourseUsers.ElementAt(i).Course.Image, 107
             WriteLiteral("</td>\r\n                    <td scope=\"col\">");
             EndContext();
             BeginContext(1605, 126, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f0e4e94526c54b8b8b91e965a15229ba", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "008ef3bc112843629b5f5719e1eabbee", async() => {
                 BeginContext(1674, 53, false);
 #line 30 "D:\OwnProjects\OnlineTutor\OnlineTutorApp\Views\Course\OwnCourses.cshtml"
                                                                                                    Write(Model.CourseUsers.ElementAt(i).Course.Quizzes.Count());
@@ -299,7 +299,7 @@ AddHtmlAttributeValue("", 1079, Model.CourseUsers.ElementAt(i).Course.Image, 107
             WriteLiteral("</td>\r\n                    <td scope=\"col\" style=\"display:flex;\">\r\n                        ");
             EndContext();
             BeginContext(1822, 204, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa34258be1274818ad8bf55947d9e0a9", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e2d1235075234306baae9da29299ebf6", async() => {
                 BeginContext(1916, 106, true);
                 WriteLiteral("\r\n                            <i style=\"color:#ffffff;\" class=\"fas fa-info\"></i>\r\n                        ");
                 EndContext();
@@ -337,7 +337,7 @@ AddHtmlAttributeValue("", 1079, Model.CourseUsers.ElementAt(i).Course.Image, 107
             WriteLiteral("\r\n                        ");
             EndContext();
             BeginContext(2052, 208, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a45f51fdbbd845149ad639ea6c8b9f6e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "55845e176c3e48dab0d47e5c3165251d", async() => {
                 BeginContext(2151, 105, true);
                 WriteLiteral("\r\n                            <i style=\"color:#ffffff;\" class=\"fas fa-pen\"></i>\r\n                        ");
                 EndContext();
@@ -375,7 +375,7 @@ AddHtmlAttributeValue("", 1079, Model.CourseUsers.ElementAt(i).Course.Image, 107
             WriteLiteral("\r\n                        ");
             EndContext();
             BeginContext(2286, 401, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bbef4e7269804b06add1929183b50f56", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b4548e993cda47c09f26d2e5497401dd", async() => {
                 BeginContext(2375, 50, true);
                 WriteLiteral("\r\n                            <input type=\"hidden\"");
                 EndContext();
