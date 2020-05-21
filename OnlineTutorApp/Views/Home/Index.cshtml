@@ -101,7 +101,7 @@
                                                 @{ string heartStyle = "far";
                                                     @try
                                                     {
-                                                        if (Model.LikeForCourses.Where(x => x.AppUserId == ViewBag.UserId && x.CourseId == Model.Courses.ElementAt(i).ID).SingleOrDefault().Liked == true)
+                                                        if (Model.Courses.ElementAt(i).LikeForCourses.Where(x => x.AppUserId == ViewBag.UserId).Select(x => x.Liked).FirstOrDefault() == true)
                                                         {
                                                             heartStyle = "fas";
                                                         }

@@ -15,12 +15,11 @@
                 <li>Sillabus<span>@Model.Course.Sillabus.Where(x => x.CourseId == Model.Course.ID).Count()</span></li>
                 <li>Kuiz<span>@Model.Course.Quizzes.Where(x => x.CourseId == Model.Course.ID).Count()</span></li>
             </ul>
-            <a asp-controller="Video" asp-action="PlayingVideo" asp-route-id="1" class="btn-left-container">Videolara get</a>
         </div>
         <div class="right-container col-lg-9">
             <div class="header">
                 <div class="author">
-                    <img src="~/images/profilePhotos/@Model.CourseUser.AppUser.Image" alt="">
+                    <img src="~/images/profilePhotos/@Model.CourseUser.AppUser.Image" alt="author photo">
                     <span>@Model.CourseUser.AppUser.Name @Model.CourseUser.AppUser.Surname</span>
                 </div>
                 <div class="category">

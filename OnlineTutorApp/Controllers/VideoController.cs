@@ -8,6 +8,9 @@ using OnlineTutorApp.Data;
 using OnlineTutorApp.Models;
 using OnlineTutorApp.ViewModels;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Rewrite.Internal;
+using OnlineTutorApp.Extensions;
+using Microsoft.AspNetCore.Hosting;
 
 namespace OnlineTutorApp.Controllers
 {
@@ -15,11 +18,42 @@ namespace OnlineTutorApp.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly AppDbContext _dbContext;
-        public VideoController(AppDbContext dbContext, UserManager<AppUser> userManager)
+        private readonly IHostingEnvironment _env;
+        public VideoController(AppDbContext dbContext, UserManager<AppUser> userManager, IHostingEnvironment env)
         {
             _dbContext = dbContext;
             _userManager = userManager;
+            _env = env;
         }
+
+        public async Task<IActionResult> Create()
+        {
+            //if (courseId == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //ViewBag.CourseId = courseId;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Video video)
+        {
+            if (video.VideoPath != null)
+            {
+                if (!video.VideoPath.IsVideo())
+                {
+                    ModelState.AddModelError("Photo", "Fayl video tipində olmalıdır!!!");
+                    return View(video);
+                }
+            }
+
+            string path = await video.VideoPath.SaveAsync(_env.WebRootPath, "videos");
+            return RedirectToAction("List", "Video", new { courseId = video.CourseId });
+        }
+
         public async Task<IActionResult> PlayingVideo(int? id)
         {
             if (id == null)
@@ -107,10 +141,22 @@ namespace OnlineTutorApp.Controllers
             return RedirectToAction("PlayingVideo", "Video", new { id = id });
         }
 
-        public async Task<IActionResult> Create()
-        {
 
-            return RedirectToAction("");
+        public async Task<IActionResult> List(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            ViewBag.CourseId = id;
+
+            IEnumerable<Video> videos = await _dbContext.Videos
+                                                            .Include(x=>x.LikeForVideos)
+                                                                .Include(x=>x.Comments)
+                                                                    .Where(x=>x.CourseId==id).ToListAsync();
+
+            return View(videos);
         }
     }
 }

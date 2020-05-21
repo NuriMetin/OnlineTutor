@@ -24,15 +24,15 @@
                             </span>
                         </div>
                         <div class="right" id="rating">
-                            <button class="like" id="btn_like" style="cursor:pointer; border:none; background-color:transparent;"><i class="@ViewBag.LikeStyle fa-thumbs-up"></i></button> <span id="like_Count">@Model.LikesForVideos.Where(x=>x.Liked==true).Count()</span>
-                            <button class="dislike" id="btn_dislike" style="cursor:pointer;  border:none; background-color:transparent;"><i class="@ViewBag.DisLikeStyle fa-thumbs-down"></i></button> <span id="dislike_Count">@Model.LikesForVideos.Where(x=>x.Liked==false).Count()</span>
+                            <button class="like" id="btn_like" style="cursor:pointer; border:none; background-color:transparent;"><i class="@ViewBag.LikeStyle fa-thumbs-up"></i></button> <span id="like_Count">@Model.LikesForVideos.Where(x => x.Liked == true).Count()</span>
+                            <button class="dislike" id="btn_dislike" style="cursor:pointer;  border:none; background-color:transparent;"><i class="@ViewBag.DisLikeStyle fa-thumbs-down"></i></button> <span id="dislike_Count">@Model.LikesForVideos.Where(x => x.Liked == false).Count()</span>
                         </div>
                     </div>
                 </div>
                 <div class="comment">
                     @{ int commentCount = 0;
-                        try { commentCount=Model.Comments.Count();} catch { commentCount = 0; }
-                        }
+                        try { commentCount = Model.Comments.Count(); } catch { commentCount = 0; }
+                    }
                     <span id="commentCount" class="comment-count">@commentCount comments</span>
                     <form class="comment-form">
                         <input class="comment-text" id="commentText" type="text" placeholder="add comment...">
@@ -57,7 +57,7 @@
                             }
                             catch
                             {
-                                
+
                             }
                         }
                     </div>

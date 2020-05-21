@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -27,5 +29,8 @@ namespace OnlineTutorApp.Models
 
         public virtual ICollection<LikeForVideo> LikeForVideos { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
+
+        [NotMapped]
+        public IFormFile VideoPath { get; set; }
     }
 }

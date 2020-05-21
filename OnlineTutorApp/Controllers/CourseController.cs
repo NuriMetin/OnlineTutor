@@ -11,6 +11,8 @@ using static OnlineTutorApp.Extensions.IFormFileExtension;
 using OnlineTutorApp.Models;
 using OnlineTutorApp.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Razor.Language.Intermediate;
+using System.Security.Cryptography.X509Certificates;
 
 namespace OnlineTutorApp.Controllers
 {
@@ -83,7 +85,7 @@ namespace OnlineTutorApp.Controllers
 
             if (courseVM.Course.IsFree != true)
             {
-                if (courseVM.Course.Amount == 0 || courseVM.Course.Amount == null)
+                if (courseVM.Course.Amount == 0)
                 {
                     ModelState.AddModelError("Course.Amount", "Boş ola bilməz!!!");
                     return View(courseVM);
@@ -138,9 +140,9 @@ namespace OnlineTutorApp.Controllers
                                                  .Include(x => x.Course)
                                                     .Include(x => x.Course.Category)
                                                         .Include(x => x.AppUser)
-                                                            .Include(x=>x.Course.DidacticMaterials)
-                                                                .Include(x=>x.Course.Videos)
-                                                                    .Include(x=>x.Course.Quizzes)
+                                                            .Include(x => x.Course.DidacticMaterials)
+                                                                .Include(x => x.Course.Videos)
+                                                                    .Include(x => x.Course.Quizzes)
                                                                         .Where(x => x.AppUserId == user.Id).ToListAsync(),
 
                 LikeForCourses = await _dbContext.LikeForCourses.Include(x => x.Course).ToListAsync()
@@ -149,6 +151,29 @@ namespace OnlineTutorApp.Controllers
 
 
             return View(courseVM);
+        }
+
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            Course course = await _dbContext.Courses
+                                       .Include(x => x.Videos)
+                                            .Include(x=>x.DidacticMaterials)
+                                                .Include(x=>x.Quizzes)
+                                                    .Include(x=>x.LikeForCourses)
+                                                       .Where(x => x.ID == id)
+                                                           .FirstOrDefaultAsync();
+
+            if (course == null)
+            {
+                return NotFound();
+            }
+
+            return RedirectToAction(nameof(OwnCourses));
         }
     }
 }

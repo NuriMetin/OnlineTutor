@@ -30,7 +30,6 @@
     <Folder Include="Areas\OnlineTutorAdmin\Models\" />
     <Folder Include="Areas\OnlineTutorAdmin\Views\" />
     <Folder Include="wwwroot\images\sliders\" />
-    <Folder Include="wwwroot\images\profilePhotos\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,7 +1,21 @@
-﻿
-@{
-    ViewData["Title"] = "Create";
-}
+﻿@model Video
 
-<h2>Create</h2>
-
+<div class="container">
+    <div class="row">
+        <form method="post" enctype="multipart/form-data" asp-controller="Video" asp-action="Create">
+            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+            <input type="hidden" asp-for="CourseId" value="@ViewBag.CourseId" />
+            <div class="form-group">
+                <label class="control-label"></label>
+                <input type="file" asp-for="VideoPath" />
+                <span asp-validation-for="VideoPath" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Başlıq</label>
+                <input type="text" asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <input class="btn btn-primary" type="submit" value="Yadda saxla" />
+        </form>
+    </div>
+</div>

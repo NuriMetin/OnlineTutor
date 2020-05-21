@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Video>
+@{
+    ViewData["Title"] = "List";
+}
+
+<div class="container">
+    <a style="color:#ffffff;" class="btn btn-primary btn-block" asp-controller="Video" asp-action="Create" asp-route-id="@ViewBag.CourseId"><i style="color:white;" class="fa fa-plus" aria-hidden="true"></i> Əlavə et</a>
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th scope="col">Şəkil</th>
+                <th scope="col">Başlıq</th>
+                <th scope="col">Bəyənənlər sayı</th>
+                <th scope="col">Bəyənməyənlər sayı</th>
+                <th scope="col">Comment sayı</th>
+                <th scope="col">Əməliyyatlar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+                <tr>
+                    @{
+                        int videoId = Model.ElementAt(i).ID;
+                    }
+                    <td scope="col" style="">
+                        <video style="height:50px; width:100px;" autoPictureInPicture controlslist>
+                            <source src="~/videos/@Model.ElementAt(i).Path" type="video/mp4" />
+                        </video>
+                    </td>
+                    <td>@Model.ElementAt(i).Title</td>
+                    <td scope="col">@Model.ElementAt(i).LikeForVideos.Where(x=>x.Liked==true).Count()</td>
+                    <td scope="col">@Model.ElementAt(i).LikeForVideos.Where(x => x.Liked == false).Count()</td>
+                    <td scope="col">@Model.ElementAt(i).Comments.Count()</td>
+                    <td scope="col" style="display:flex;">
+                        <a asp-action="Details" asp-controller="Video" asp-route-id="@videoId" class="btn btn-info">
+                            <i style="color:#ffffff;" class="fas fa-info"></i>
+                        </a>
+                        <a asp-action="Edit" asp-controller="Video" asp-route-id="@videoId" class="btn btn-warning ml-2">
+                            <i style="color:#ffffff;" class="fas fa-pen"></i>
+                        </a>
+                        <form method="post" asp-action="Delete" asp-controller="Video" asp-route-id="@videoId">
+                            <input type="hidden" value="@videoId" />
+                            <button type="submit" class="btn btn-danger ml-2">
+                                <i style="color:#ffffff;" class="fas fa-trash-alt"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
