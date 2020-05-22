@@ -77,7 +77,7 @@ using OnlineTutorApp.ViewModels;
             WriteLiteral("\r\n<div class=\"container\">\r\n    ");
             EndContext();
             BeginContext(109, 215, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1b2b2e897c304698ba3dc8ea689d2f9b", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9d0c6c17b71948598431195c140f07cd", async() => {
                 BeginContext(245, 75, true);
                 WriteLiteral("<i style=\"color:white;\" class=\"fa fa-plus\" aria-hidden=\"true\"></i> Əlavə et");
                 EndContext();
@@ -158,7 +158,7 @@ using OnlineTutorApp.ViewModels;
             WriteLiteral("\r\n                    </td>\r\n                    <td scope=\"col\" style=\"display:flex;\">\r\n                        ");
             EndContext();
             BeginContext(1182, 224, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8c7bcbafa7ac4571b5a4fd886da7061b", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9fb464fa937c4f699859e6202619f618", async() => {
                 BeginContext(1296, 106, true);
                 WriteLiteral("\r\n                            <i style=\"color:#ffffff;\" class=\"fas fa-info\"></i>\r\n                        ");
                 EndContext();
@@ -196,7 +196,7 @@ using OnlineTutorApp.ViewModels;
             WriteLiteral("\r\n                        ");
             EndContext();
             BeginContext(1432, 228, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "24d91fc50d4d4960bcfcba5f6f88658a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3a99fa11d5f24f608122d9bed569aa5d", async() => {
                 BeginContext(1551, 105, true);
                 WriteLiteral("\r\n                            <i style=\"color:#ffffff;\" class=\"fas fa-pen\"></i>\r\n                        ");
                 EndContext();
@@ -234,7 +234,7 @@ using OnlineTutorApp.ViewModels;
             WriteLiteral("\r\n                        ");
             EndContext();
             BeginContext(1686, 420, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8c6eb75450a848babc15ab4488a62071", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dc4b49cd70554f1380c48b1a19037d46", async() => {
                 BeginContext(1784, 50, true);
                 WriteLiteral("\r\n                            <input type=\"hidden\"");
                 EndContext();

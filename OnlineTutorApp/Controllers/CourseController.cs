@@ -162,9 +162,9 @@ namespace OnlineTutorApp.Controllers
 
             Course course = await _dbContext.Courses
                                        .Include(x => x.Videos)
-                                            .Include(x=>x.DidacticMaterials)
-                                                .Include(x=>x.Quizzes)
-                                                    .Include(x=>x.LikeForCourses)
+                                            .Include(x => x.DidacticMaterials)
+                                                .Include(x => x.Quizzes)
+                                                    .Include(x => x.LikeForCourses)
                                                        .Where(x => x.ID == id)
                                                            .FirstOrDefaultAsync();
 
@@ -173,6 +173,37 @@ namespace OnlineTutorApp.Controllers
                 return NotFound();
             }
 
+            
+
+            RemoveFile(_env.WebRootPath, "images", "courses", course.Image);
+
+            foreach (var video in course.Videos)
+            {
+                if (video != null)
+                {
+                    RemoveFile(_env.WebRootPath, "videos", video.Path);
+                }
+                
+            }
+
+            foreach (var didacticMaterial in course.DidacticMaterials)
+            {
+                if (didacticMaterial != null)
+                {
+                    RemoveFile(_env.WebRootPath, "didacticMaterials", didacticMaterial.Name);
+                }
+            }
+
+            foreach (var quiz in course.Quizzes)
+            {
+                if (quiz != null)
+                {
+                    RemoveFile(_env.WebRootPath, "quizzes", quiz.Title);
+                }
+            }
+
+            _dbContext.Courses.Remove(course);
+            await _dbContext.SaveChangesAsync();
             return RedirectToAction(nameof(OwnCourses));
         }
     }

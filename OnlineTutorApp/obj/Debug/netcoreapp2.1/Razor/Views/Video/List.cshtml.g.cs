@@ -78,7 +78,7 @@ using OnlineTutorApp.ViewModels;
             WriteLiteral("\r\n<div class=\"container\">\r\n    ");
             EndContext();
             BeginContext(98, 215, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1015acb267ad412784a5f8c1f3a34b39", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0a61a1e4e4754434a9ac4c0b84445c98", async() => {
                 BeginContext(234, 75, true);
                 WriteLiteral("<i style=\"color:white;\" class=\"fa fa-plus\" aria-hidden=\"true\"></i> Əlavə et");
                 EndContext();
@@ -149,7 +149,7 @@ using OnlineTutorApp.ViewModels;
             WriteLiteral("                    <td scope=\"col\" style=\"\">\r\n                        <video style=\"height:50px; width:100px;\" autoPictureInPicture controlslist>\r\n                            ");
             EndContext();
             BeginContext(1128, 67, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("source", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "09c1590e707f4ef886fb79fc01ba914a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("source", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "11573b1ac0854e238da290ebdf6049f7", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -215,7 +215,7 @@ AddHtmlAttributeValue("", 1150, Model.ElementAt(i).Path, 1150, 24, false);
             WriteLiteral("</td>\r\n                    <td scope=\"col\" style=\"display:flex;\">\r\n                        ");
             EndContext();
             BeginContext(1698, 202, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a91bca4f66e14cf5b3523b5337a17d9a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6d382b58fb6b4bbf889f2f14197cbea7", async() => {
                 BeginContext(1790, 106, true);
                 WriteLiteral("\r\n                            <i style=\"color:#ffffff;\" class=\"fas fa-info\"></i>\r\n                        ");
                 EndContext();
@@ -253,7 +253,7 @@ AddHtmlAttributeValue("", 1150, Model.ElementAt(i).Path, 1150, 24, false);
             WriteLiteral("\r\n                        ");
             EndContext();
             BeginContext(1926, 206, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b1c97c53e3da431e813b7f8a5b218a1a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "327e66d9309647eb8b9e49fe4b972821", async() => {
                 BeginContext(2023, 105, true);
                 WriteLiteral("\r\n                            <i style=\"color:#ffffff;\" class=\"fas fa-pen\"></i>\r\n                        ");
                 EndContext();
@@ -291,7 +291,7 @@ AddHtmlAttributeValue("", 1150, Model.ElementAt(i).Path, 1150, 24, false);
             WriteLiteral("\r\n                        ");
             EndContext();
             BeginContext(2158, 398, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a5d4ef52c06e43fdb58150420c496428", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "140c124d9c1746289799ef2949845f1e", async() => {
                 BeginContext(2245, 50, true);
                 WriteLiteral("\r\n                            <input type=\"hidden\"");
                 EndContext();

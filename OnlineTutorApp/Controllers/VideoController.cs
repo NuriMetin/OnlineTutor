@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Rewrite.Internal;
 using OnlineTutorApp.Extensions;
 using Microsoft.AspNetCore.Hosting;
+using static OnlineTutorApp.Extensions.IFormFileExtension;
 
 namespace OnlineTutorApp.Controllers
 {
@@ -152,11 +153,35 @@ namespace OnlineTutorApp.Controllers
             ViewBag.CourseId = id;
 
             IEnumerable<Video> videos = await _dbContext.Videos
-                                                            .Include(x=>x.LikeForVideos)
-                                                                .Include(x=>x.Comments)
-                                                                    .Where(x=>x.CourseId==id).ToListAsync();
+                                                            .Include(x => x.LikeForVideos)
+                                                                .Include(x => x.Comments)
+                                                                    .Where(x => x.CourseId == id).ToListAsync();
 
             return View(videos);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            Video video = await _dbContext.Videos.FindAsync(id);
+
+            if (video == null)
+            {
+                return NotFound();
+            }
+
+            _dbContext.Videos.Remove(video);
+            RemoveFile(_env.WebRootPath, "videos", video.Path);
+            await _dbContext.SaveChangesAsync();
+
+
+            return RedirectToAction("List", "Video", new { id = video.CourseId });
         }
     }
 }
