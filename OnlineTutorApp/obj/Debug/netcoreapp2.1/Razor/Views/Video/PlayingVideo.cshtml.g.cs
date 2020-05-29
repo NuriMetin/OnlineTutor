@@ -74,7 +74,7 @@ using OnlineTutorApp.ViewModels;
 #line default
 #line hidden
             BeginContext(71, 55, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "304dcbc29f2b421e936cd25947a04f8f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "993fa12a90764ab29b324e25a51d368e", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -100,7 +100,7 @@ using OnlineTutorApp.ViewModels;
                         ");
             EndContext();
             BeginContext(447, 58, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("source", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "0f298b2b55eb44c796ccdb0bbf5b5a2d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("source", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "d5cc24477c9f48839ff64c8f493c53ef", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -126,7 +126,7 @@ AddHtmlAttributeValue("", 469, Model.Video.Path, 469, 17, false);
             WriteLiteral("\r\n                    </video>\r\n                    <div class=\"video-content\">\r\n                        ");
             EndContext();
             BeginContext(610, 62, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "c7d998cfbe5548ec81eb326602b96c08", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "b0859239bcdd4e089bebf98bac1e3e6f", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -249,7 +249,7 @@ WriteAttributeValue("", 1721, ViewBag.DisLikeStyle, 1721, 21, false);
             WriteLiteral(" comments</span>\r\n                    ");
             EndContext();
             BeginContext(2274, 284, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fe9c33fe00fd4f21a03b8f0d092eb4e4", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2ba8002dbb6b4ceea95b19d728ca2bb2", async() => {
                 BeginContext(2301, 250, true);
                 WriteLiteral("\r\n                        <input class=\"comment-text\" id=\"commentText\" type=\"text\" placeholder=\"add comment...\">\r\n                        <input type=\"button\" class=\"btn btn-primary btn-comment\" id=\"btn_comment\" value=\"Comment\">\r\n                    ");
                 EndContext();
@@ -357,7 +357,7 @@ WriteAttributeValue("", 1721, ViewBag.DisLikeStyle, 1721, 21, false);
             WriteLiteral("                    <div class=\"secondary\">\r\n                        ");
             EndContext();
             BeginContext(3851, 851, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "781cda56efad495cb4557b736b988c04", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d9948b2c0c0d460e932e46faddede4b5", async() => {
                 BeginContext(3942, 278, true);
                 WriteLiteral(@"
                             <button id=""btn_video"" type=""submit"" style=""background:none; border:none; cursor:pointer; display:flex;"">
@@ -365,7 +365,7 @@ WriteAttributeValue("", 1721, ViewBag.DisLikeStyle, 1721, 21, false);
                                     ");
                 EndContext();
                 BeginContext(4220, 54, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("source", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "11c347c28e044ed5b4633e239ac6b75f", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("source", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "3b82fac5dda3439eabf2add1c2f4e009", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -455,7 +455,7 @@ AddHtmlAttributeValue("", 4242, video.Path, 4242, 11, false);
             WriteLiteral("            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js\"></script>\r\n");
             EndContext();
             BeginContext(4898, 37, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cfbd286f25a649b988fa941ccff84f93", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2f96aa12eb404aa795e8cb189933c58c", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

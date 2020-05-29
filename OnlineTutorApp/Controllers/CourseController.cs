@@ -148,8 +148,6 @@ namespace OnlineTutorApp.Controllers
                 LikeForCourses = await _dbContext.LikeForCourses.Include(x => x.Course).ToListAsync()
             };
 
-
-
             return View(courseVM);
         }
 
@@ -173,7 +171,7 @@ namespace OnlineTutorApp.Controllers
                 return NotFound();
             }
 
-            
+
 
             RemoveFile(_env.WebRootPath, "images", "courses", course.Image);
 
@@ -183,7 +181,7 @@ namespace OnlineTutorApp.Controllers
                 {
                     RemoveFile(_env.WebRootPath, "videos", video.Path);
                 }
-                
+
             }
 
             foreach (var didacticMaterial in course.DidacticMaterials)

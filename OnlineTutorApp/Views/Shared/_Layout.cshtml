@@ -17,13 +17,30 @@
 <body>
     <!-- Header started -->
     <header>
-        <nav>
-            <div class="container-fluid">
+        <div class="top-header">
+            <div class="container">
                 <div class="row">
                     <!--  Site logo-->
+
                     <div class="site-logo">
                         <a asp-controller="Home" asp-action="Index"><img src="~/images/logo.png" alt="site logo"></a>
                     </div>
+
+                    <div class="search-box" id="search_box">
+                        <form method="post">
+                            <input class="txbx-search" type="search" placeholder="Axtar...">
+                            <button class="btn-search">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <nav>
+            <div class="container-fluid">
+                <div class="row">
 
                     <div class="menu-bar" id="menu_bar">
                         <i class="fas fa-bars"></i>
@@ -36,7 +53,8 @@
                             <li class="site-menu-list"><a href="#" class="menu-element">Haqqımızda</a></li>
                             <li class="site-menu-list">
                                 <span class="menu-element" id="course">
-                                    Kurslar<i class="fas fa-caret-down"></i>
+                                    Kurslar
+                                    <i class="fas fa-caret-down"></i>
                                 </span>
                                 <ul class="sub-menu" id="course_submenu">
                                     <li><a href="courses.html">Bütün kurslar</a></li>
@@ -77,15 +95,6 @@
                                 </a>
                             </li>
                         </ul>
-                    </div>
-
-                    <div class="search-box" id="search_box">
-                        <form method="post">
-                            <input class="txbx-search" type="search" placeholder="Axtar...">
-                            <button class="btn-search">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </form>
                     </div>
 
                     @if (!User.Identity.IsAuthenticated)
@@ -195,7 +204,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 
-    
+
     <!--Validation-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
