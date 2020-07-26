@@ -1,0 +1,42 @@
+﻿@model IEnumerable<OnlineTutorApp.ViewModels.ResultViewModel>
+
+@{
+    ViewData["Title"] = "UsersResults";
+}
+
+<div class="container-fluid pt-5" style=" padding-bottom:40px;">
+    <div class="container pb-4" style="text-align:center;">
+        <h2>Nəticələr</h2>
+    </div>
+    <table class="table col-md-12">
+        <thead>
+            <tr>
+                <th>
+                    İstifadəçi adı
+                </th>
+                <th>
+                    Tarix
+                </th>
+                <th>
+                    Nəticə
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Username
+                    </td>
+                    <td>
+                        @item.Date
+                    </td>
+                    <td>
+                        @item.Result doğru cavab
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

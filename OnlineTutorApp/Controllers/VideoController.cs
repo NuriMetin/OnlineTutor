@@ -27,32 +27,42 @@ namespace OnlineTutorApp.Controllers
             _env = env;
         }
 
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create(int? id)
         {
-            //if (courseId == null)
-            //{
-            //    return NotFound();
-            //}
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-            //ViewBag.CourseId = courseId;
+            ViewBag.CourseId = id;
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Video video)
+        public async Task<IActionResult> Create(int id,Video video)
         {
             if (video.VideoPath != null)
             {
                 if (!video.VideoPath.IsVideo())
                 {
-                    ModelState.AddModelError("Photo", "Fayl video tipində olmalıdır!!!");
+                    ModelState.AddModelError("VideoPath", "Fayl video tipində olmalıdır!!!");
                     return View(video);
                 }
             }
 
             string path = await video.VideoPath.SaveAsync(_env.WebRootPath, "videos");
-            return RedirectToAction("List", "Video", new { courseId = video.CourseId });
+
+            Video videoForDb = new Video
+            {
+                CourseId = id,
+                Path = path,
+                Title = video.Title,
+                PublishDate=DateTime.Now
+            };
+            await _dbContext.Videos.AddAsync(videoForDb);
+            await _dbContext.SaveChangesAsync();
+            return RedirectToAction("List", "Video", new { id=id });
         }
 
         public async Task<IActionResult> PlayingVideo(int? id)

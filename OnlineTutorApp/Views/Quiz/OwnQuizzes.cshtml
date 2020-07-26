@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Quiz>
+@{
+    ViewData["Title"] = "OwnQuizzes";
+}
+
+
+
+<div class="main-container" style="padding-top:50px;">
+    <div id="course" class="col-md-12">
+        
+        <div class="container-fluid">
+            <a style="color:#ffffff;" class="btn btn-primary btn-block" asp-controller="Quiz" asp-action="Create" asp-route-id="@ViewBag.CourseId"><i style="color:white;" class="fa fa-plus" aria-hidden="true"></i> Əlavə et</a>
+            <div class="row" style="padding-top:25px;">
+
+                @foreach (var quiz in Model)
+                {
+                    <div class="course col-md-4 col-sm-12" style="margin:30px 0;">
+                        <div class="course-thumb">
+                            <form asp-action="Delete" style="position:absolute; right:10%;" asp-controller="Quiz" class="delete" asp-route-id="@quiz.ID">
+                                <input type="hidden" value="@quiz.ID" name="Id" />
+                                <button style="border:none; background:transparent; cursor:pointer;" type="submit"><i class="fas fa-trash-alt"></i></button>
+                            </form>
+                            <h5>@quiz.Title</h5>
+                            <span>@quiz.Questions.Count() Sual</span>
+                            <div class="">
+                                <a asp-action="QuestionList" asp-controller="Question" asp-route-id="@quiz.ID" class="btn btn-light">Testə başla</a>
+                                <a asp-action="Create" asp-controller="Question" asp-route-id="@quiz.ID" class="btn btn-primary">Test əlavə et</a>
+                                <a asp-action="UsersResults" asp-controller="ControlTest" asp-route-id="@quiz.ID" class="btn btn-success">Nəticələr</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

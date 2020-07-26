@@ -19,5 +19,6 @@ namespace OnlineTutorApp.Models
         [Required]
         public int QuizId { get; set; }
         public virtual Quiz Quiz { get; set; }
+        public virtual ICollection<Answer> Answers { get; set; }
     }
 }

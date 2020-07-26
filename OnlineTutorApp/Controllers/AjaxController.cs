@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -217,6 +218,97 @@ namespace OnlineTutorApp.Controllers
             int likeCount = _dbContext.LikeForCourses.Where(x => x.CourseId == courseId).Count();
 
             return Json(new { status = 200, count = likeCount, heart = heartStyle });
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> AddQuestion(int id, bool IsTrueA, bool IsTrueB, bool IsTrueC, bool IsTrueD, bool IsTrueE, string AnswerA, string AnswerB, string AnswerC, string AnswerD, string AnswerE, string QuestionContent)
+        {
+            if (id == 0)
+            {
+                return Json(new { status = "400" });
+            }
+            int falseCount = 0;
+            List<string> isFalse = new List<string>();
+            isFalse.Add(IsTrueA.ToString());
+            isFalse.Add(IsTrueB.ToString());
+            isFalse.Add(IsTrueC.ToString());
+            isFalse.Add(IsTrueD.ToString());
+            isFalse.Add(IsTrueE.ToString());
+
+            foreach (var item in isFalse)
+            {
+                if (item == "False")
+                {
+                    falseCount++;
+                }
+            }
+
+            if (falseCount == 5 || AnswerA == null || AnswerB == null || AnswerC == null || AnswerD == null || AnswerE == null)
+            {
+                return Json(new { status = "400" });
+            }
+
+            Question question = new Question
+            {
+                QuizId = id,
+                Content = QuestionContent,
+                AddedDate = DateTime.Now
+            };
+
+            await _dbContext.AddAsync(question);
+
+            Answer answerA = new Answer
+            {
+                QuestionId = question.ID,
+                IsTrue = IsTrueA,
+                Content = AnswerA
+            };
+
+            Answer answerB = new Answer
+            {
+                QuestionId = question.ID,
+                IsTrue = IsTrueB,
+                Content = AnswerB
+            };
+
+            Answer answerC = new Answer
+            {
+                QuestionId = question.ID,
+                IsTrue = IsTrueC,
+                Content = AnswerC
+            };
+
+            Answer answerD = new Answer
+            {
+                QuestionId = question.ID,
+                IsTrue = IsTrueD,
+                Content = AnswerD
+            };
+
+            Answer answerE = new Answer
+            {
+                QuestionId = question.ID,
+                IsTrue = IsTrueE,
+                Content = AnswerE
+            };
+
+            await _dbContext.Answers.AddAsync(answerA);
+            await _dbContext.Answers.AddAsync(answerB);
+            await _dbContext.Answers.AddAsync(answerC);
+            await _dbContext.Answers.AddAsync(answerD);
+            await _dbContext.Answers.AddAsync(answerE);
+            await _dbContext.SaveChangesAsync();
+
+            return Json(new { status = "200" });
+        }
+
+        [Authorize]
+        public async Task<IActionResult> LoadQuestions(int id)
+        {
+            IEnumerable<Question> questions = await _dbContext.Questions.Include(x => x.Answers).Include(x => x.Quiz)
+                                                   .Where(x => x.Quiz.ID == id).OrderByDescending(x => x.AddedDate).ToListAsync();
+            return View(questions);
         }
 
     }

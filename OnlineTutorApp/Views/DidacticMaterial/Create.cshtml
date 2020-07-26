@@ -1,0 +1,31 @@
+﻿@model FilesViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+    <div class="main-container">
+        <div class="container" style="text-align:center;">
+            <h2 class="pb-3 pt-3">Didaktik material</h2>
+        </div>
+        <form style="padding-left:39%;" method="post" asp-action="Create" asp-controller="DidacticMaterial" enctype="multipart/form-data">
+            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+            <div class="row">
+
+                <div class="col-lg-7">
+                    <div class="form-group col-lg-8">
+                        <label class="control-label">Başlıq</label>
+                        <input class="form-control" asp-for="Title" />
+                        <span class="text-danger" asp-validation-for="Title"></span>
+                    </div>
+                    <div class="col-lg-8">
+                        <input style="margin-top:5px" ; asp-for="File" type="file" />
+                        <span class="text-danger red" asp-validation-for="File"></span>
+                    </div>
+                    <div class="btn-register pb-5 pt-5 col-lg-8" style="text-align:center;">
+                        <input type="submit" class="btn btn-primary" value="Saxla" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+

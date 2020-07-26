@@ -1,0 +1,72 @@
+﻿@model QuestionViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="main-container pt-5" style="height:auto !important; padding-left:10%;">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-5">
+            <div class="create-question">
+
+                <input id="quiz_id" type="hidden" disabled value="@Model.QuizId" />
+                <form style="padding-bottom:25px;">
+                    <ol>
+                        <li>
+                            <input type="text" class="question-content" id="QuestionContent" placeholder="Sual əlavə et..." />
+                            <ol class="answer-list">
+                                <li style="list-style-type:upper-latin; padding-top:10px;">
+                                    <input type="radio" id="IsTrueA" name="IsTrue" /><input type="text" class="answer-content" id="AnswerA" placeholder="Cavab..." />
+                                </li>
+                                <li style="list-style-type:upper-latin; padding-top:10px;">
+                                    <input type="radio" id="IsTrueB" name="IsTrue" /><input type="text" class="answer-content" id="AnswerB" placeholder="Cavab..." />
+                                </li>
+                                <li style="list-style-type:upper-latin; padding-top:10px;">
+                                    <input type="radio" id="IsTrueC" name="IsTrue" /><input type="text" class="answer-content" id="AnswerC" placeholder="Cavab..." />
+                                </li>
+                                <li style="list-style-type:upper-latin; padding-top:10px;">
+                                    <input type="radio" id="IsTrueD" name="IsTrue" /><input type="text" class="answer-content" id="AnswerD" placeholder="Cavab..." />
+                                </li>
+                                <li style="list-style-type:upper-latin; padding-top:10px;">
+                                    <input type="radio" id="IsTrueE" name="IsTrue" /><input type="text" class="answer-content" id="AnswerE" placeholder="Cavab..." />
+                                </li>
+                            </ol>
+                        </li>
+                    </ol>
+                    <input type="button" style="margin-left:45%;" id="btn_create_test" class="btn-submit btn btn-primary" value="Saxla" />
+                </form>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-7">
+
+            <div id="questionList">
+                <div class="col-md-12">
+                    <ol class="answers-question-list" type="1">
+                        @foreach (var question in Model.Questions)
+                        {
+                            <li style="list-style-type:decimal; font-weight:bold;">
+                                @question.Content<input type="hidden" name="questionId" value="@question.ID" />
+                                <ol type="A" style="margin-left:0 !important; padding-left:0 !important">
+                                    @foreach (var answer in question.Answers)
+                                    {
+                                        if (answer.IsTrue == true)
+                                        {
+                                            <li style="list-style-type:upper-latin; font-weight:lighter; color:red;"> @answer.Content</li>
+                                        }
+                                        else
+                                        {
+                                            <li style="list-style-type:upper-latin; font-weight:lighter;"> @answer.Content</li>
+
+                                        }
+                                    }
+                                </ol>
+                            </li>
+                        }
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="~/js/index.js"></script>

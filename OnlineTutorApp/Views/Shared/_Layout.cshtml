@@ -21,99 +21,84 @@
             <div class="container">
                 <div class="row">
                     <!--  Site logo-->
-
                     <div class="site-logo">
                         <a asp-controller="Home" asp-action="Index"><img src="~/images/logo.png" alt="site logo"></a>
                     </div>
 
-                    <div class="search-box" id="search_box">
-                        <form method="post">
-                            <input class="txbx-search" type="search" placeholder="Axtar...">
-                            <button class="btn-search">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </form>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <nav>
-            <div class="container-fluid">
-                <div class="row">
-
+                    <form method="post">
+                        <select style="height: calc(2rem + 1px);" class="header-category form-control">
+                            <option>Kateqoriya</option>
+                            <option>Bakalavr</option>
+                            <option>Magistr</option>
+                            <option>Abituriyent</option>
+                            <option>MIQ</option>
+                            <option>DQI</option>
+                        </select>
+                        <!--  Search Box-->
+                        <div class="search-box " id="search_box">
+                            <div class="search-text">
+                                <input class="txbx-search" type="search" placeholder="Axtar...">
+                                <button class="btn-search">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                     <div class="menu-bar" id="menu_bar">
                         <i class="fas fa-bars"></i>
                     </div>
-
-                    <!-- Menu -->
-                    <div class="site-menu" id="site_menu">
+                </div>
+            </div>
+        </div>
+        <div class="bottom-header">
+            <nav>
+                <!-- Menu -->
+                <div class="site-menu" id="site_menu" style="opacity: 1;">
+                    <div class="container">
                         <ul class="row">
-                            <li class="site-menu-list"><a asp-controller="Home" asp-action="Index" class="menu-element">Ev</a></li>
-                            <li class="site-menu-list"><a href="#" class="menu-element">Haqqımızda</a></li>
-                            <li class="site-menu-list">
-                                <span class="menu-element" id="course">
-                                    Kurslar
-                                    <i class="fas fa-caret-down"></i>
-                                </span>
-                                <ul class="sub-menu" id="course_submenu">
-                                    <li><a href="courses.html">Bütün kurslar</a></li>
+                            <li style="list-style-type:none;" class="menu-list col-md-2"><a asp-controller="Home" asp-action="Index" class="menu-element">Ana Səhifə</a></li>
+                            <li style="list-style-type:none;" class="menu-list col-md-2"><a asp-controller="Home" asp-action="About" class="menu-element">Haqqımızda</a></li>
+                            <li style="list-style-type:none;" class="menu-list col-md-2">
+                                <span class="menu-element" id="course">Kurslar<i class="fas fa-caret-down" style="color:black;"></i></span>
+                                <ul class="sub-menu" id="course_submenu" style="z-index:5; opacity:1;">
+                                    <li style="list-style-type:none;"><a asp-action="AllCourses" asp-controller="Home">Bütün kurslar</a></li>
                                     <hr>
                                     @if (User.Identity.IsAuthenticated)
                                     {
-                                        <li><a asp-controller="Course" asp-action="OwnCourses">Sənin kursların</a></li>
+                                        <li style="list-style-type:none;"><a asp-controller="Course" asp-action="OwnCourses">Mənim kursların</a></li>
                                         <hr>
                                     }
-                                    <li><a href="#">Kurs yarat</a></li>
+                                    <li style="list-style-type:none;"><a asp-action="Create" asp-controller="Course">Kurs yarat</a></li>
                                     <hr>
-                                    <li><a href="#">Pulsuz kurslar</a></li>
+                                    <li style="list-style-type:none;"><a href="#">Pulsuz kurslar</a></li>
                                     <hr>
-                                    <li><a href="#">Ödənişli kurslar</a></li>
+                                    <li style="list-style-type:none;"><a href="#">Ödənişli kurslar</a></li>
                                 </ul>
                             </li>
-                            <li class="site-menu-list">
-                                <span class="menu-element" id="categories">
-                                    Kateqoriya<i class="fas fa-caret-down"></i>
-                                </span>
-                                <ul class="sub-menu" id="categories_submenu">
-                                    <li><a href="#">Bakalavr</a></li>
-                                    <hr>
-                                    <li><a href="#">Magistr</a></li>
-                                    <hr>
-                                    <li><a href="#">Abituriyent</a></li>
-                                    <hr>
-                                    <li><a href="#">MIQ</a></li>
-                                    <hr>
-                                    <li><a href="#">DQI</a></li>
-                                </ul>
-                            </li>
-                            <li class="site-menu-list"><a href="#" class="menu-element">Əlaqə</a></li>
-                            <li class="site-menu-list">
+                            <li style="list-style-type:none;" class="menu-list col-md-2"><a asp-controller="Home" asp-action="Contact" class="menu-element">Əlaqə</a></li>
+                            <li style="list-style-type:none;" class="menu-list col-md-2">
                                 <a href="#" class="menu-element">
                                     <i class="fas fa-shopping-cart"
-                                       style="color: #333333;"></i><sup style="color: #E84118;">56</sup>
+                                       style="color: black;"></i><sup style="color: #E84118;">56</sup>
                                 </a>
                             </li>
+                            @if (!User.Identity.IsAuthenticated)
+                            {
+                                <li style="list-style-type:none;" class="col-md-2 login">
+                                    <a asp-controller="Account" asp-action="Login" id="btn_login" class="btn btn-primary">Giriş</a>
+                                </li>
+                            }
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li style="list-style-type:none;" class="col-md-2 login">
+                                    <a asp-controller="Account" asp-action="Logout" id="btn_login" class="btn btn-primary">Çıxış</a>
+                                </li>
+                            }
                         </ul>
                     </div>
-
-                    @if (!User.Identity.IsAuthenticated)
-                    {
-                        <div class="btn-login">
-                            <a asp-action="Login" asp-controller="Account" class="btn btn-primary btn_login">Giriş</a>
-                        </div>
-                    }
-
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <div class="btn-logout">
-                            <a asp-action="Logout" asp-controller="Account" class="btn btn-primary">Çıxış</a>
-                        </div>
-                    }
-
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
     </header>
     <!-- Header ended -->
     <main>
@@ -127,37 +112,37 @@
             <div class="top-footer">
                 <div class="row">
                     <div class="col-md-3">
-                        <h4>Company</h4>
+                        <h4>Proyekt</h4>
                         <ul>
-                            <li><a href="#"><span><i class="fas fa-minus"></i></span>About Us</a></li>
-                            <li><a href="#"><span><i class="fas fa-minus"></i></span>Blog</a></li>
-                            <li><a href="#"><span><i class="fas fa-minus"></i></span>Contact</a></li>
+                            <li style="list-style-type:none;"><a href="#"><span><i class="fas fa-minus"></i></span>Haqqımızda</a></li>
+                            <li style="list-style-type:none;"><a href="#"><span><i class="fas fa-minus"></i></span>Blog</a></li>
+                            <li style="list-style-type:none;"><a href="#"><span><i class="fas fa-minus"></i></span>Bizimlə əlaqə</a></li>
                         </ul>
                     </div>
                     <div class="col-md-3">
                         <h4>Categories</h4>
                         <ul>
-                            <li><a href="#"><span><i class="fas fa-minus"></i></span>About Us</a></li>
-                            <li><a href="#"><span><i class="fas fa-minus"></i></span>Career</a></li>
-                            <li><a href="#"><span><i class="fas fa-minus"></i></span>Resource Center</a></li>
-                            <li><a href="#"><span><i class="fas fa-minus"></i></span>Guides</a></li>
+                            <li style="list-style-type:none;"><a href="#"><span><i class="fas fa-minus"></i></span>Bakalavr</a></li>
+                            <li style="list-style-type:none;"><a href="#"><span><i class="fas fa-minus"></i></span>Magistr</a></li>
+                            <li style="list-style-type:none;"><a href="#"><span><i class="fas fa-minus"></i></span>Abituriyent</a></li>
+                            <li style="list-style-type:none;"><a href="#"><span><i class="fas fa-minus"></i></span>Digər</a></li>
                         </ul>
                     </div>
                     <div class="col-md-3">
-                        <h4>Information</h4>
+                        <h4>Məlumat</h4>
                         <ul>
-                            <li>
-                                <a href="#"><span><i class="fas fa-paper-plane"></i></span>Huseyn Javid street 25</a>
+                            <li style="list-style-type:none;">
+                                <a href="#"><span><i class="fas fa-paper-plane"></i></span>Hüseyn Cavid prospekti 25</a>
                             </li>
-                            <li><a href="#"><span><i class="fas fa-phone"></i></span>+994 70 200 92 60</a></li>
-                            <li><a href="#"><span><i class="fas fa-envelope"></i></span>matinnn@code.edu.az</a></li>
+                            <li style="list-style-type:none;"><a href="#"><span><i class="fas fa-phone"></i></span>+994 70 200 92 60</a></li>
+                            <li style="list-style-type:none;"><a href="#"><span><i class="fas fa-envelope"></i></span>matinnn@code.edu.az</a></li>
                         </ul>
                     </div>
                     <div class="col-md-3">
-                        <h4>Get in touch</h4>
+                        <h4>Təhlükəsizlik</h4>
                         <ul>
-                            <li><a href="#"><span><i class="fas fa-minus"></i></span>Privacy Policy</a></li>
-                            <li><a href="#"><span><i class="fas fa-minus"></i></span>Cookie Policy</a></li>
+                            <li style="list-style-type:none;"><a href="#"><span><i class="fas fa-minus"></i></span>Təhlükəsizlik Siyasəti</a></li>
+                            <li style="list-style-type:none;"><a href="#"><span><i class="fas fa-minus"></i></span>Cookie Siyasəti</a></li>
                         </ul>
                     </div>
                 </div>
@@ -166,7 +151,7 @@
             <!-- Bottom footer -->
             <div class="bottom-footer">
                 <div class="col-md-6 col-xs-12">
-                    <p>© 2020, Online Tutor. All rights reserved.</p>
+                    <p>© 2020, Online Tutor. Bütün hüquqlar qorunur.</p>
                 </div>
                 <div class="sosial col-md-6 col-xs-12">
                     <ul class="social-nav model-3d-0 footer-social w3_agile_social top_agile_third">

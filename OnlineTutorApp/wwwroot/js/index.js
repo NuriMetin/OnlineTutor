@@ -163,7 +163,58 @@ $(document).ready(function () {
 
 
 
+    //-------create test----------//
+    $(document).on("click", "#btn_create_test", function () {
+        let quizId = $("#quiz_id").val();
+        let questionContent = $("#QuestionContent").val();
 
+        let isTrueA = $("#IsTrueA").is(':checked');
+
+        let isTrueB = $("#IsTrueB").is(':checked');
+        let isTrueC = $("#IsTrueC").is(':checked');
+        let isTrueD = $("#IsTrueD").is(':checked');
+        let isTrueE = $("#IsTrueE").is(':checked');
+
+
+
+        let answerA = $("#AnswerA").val();
+        let answerB = $("#AnswerB").val();
+        let answerC = $("#AnswerC").val();
+        let answerD = $("#AnswerD").val();
+        let answerE = $("#AnswerE").val();
+
+        $.ajax({
+            url: "/Ajax/AddQuestion",
+            method: "Post",
+            dataType: "json",
+            data: { IsTrueA: isTrueA, IsTrueB: isTrueB, IsTrueC: isTrueC, IsTrueD: isTrueD, IsTrueE: isTrueE, AnswerA: answerA, AnswerB: answerB, AnswerC: answerC, AnswerD: answerD, AnswerE: answerE, QuestionContent: questionContent, id: quizId },
+            success: function (tt) {
+                statusCode = tt.status;
+                if (statusCode == "400") {
+                    alert("Value can't be null!!!!");
+                }
+                else if (statusCode == "200") {
+                    alert("Succesfuly added....");
+                    $.ajax({
+                        url: "/Ajax/LoadQuestions",
+                        method: "Get",
+                        data: { id: quizId },
+                        success: function (datas) {
+                            $("#questionList").html(datas);
+                        }
+                    });
+                    $("#AnswerA").val('');
+                    $("#AnswerB").val('');
+                    $("#AnswerC").val('');
+                    $("#AnswerD").val('');
+                    $("#AnswerE").val('');
+
+                    $("#QuestionContent").val('');
+                }
+
+            }
+        });
+    });
 
 
 

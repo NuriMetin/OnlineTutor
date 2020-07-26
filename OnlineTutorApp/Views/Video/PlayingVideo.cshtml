@@ -18,7 +18,7 @@
                         </h1>
                         <div class="left">
                             <span class="primary-video-views">
-                                <span class="view_count">@Model.Video.ViewCount</span><span> views - </span><span class="primary-video-publish-date">
+                                <span class="view_count">@Model.Video.ViewCount</span><span> baxış - </span><span class="primary-video-publish-date">
                                     @Model.Video.PublishDate
                                 </span>
                             </span>
@@ -33,10 +33,10 @@
                     @{ int commentCount = 0;
                         try { commentCount = Model.Comments.Count(); } catch { commentCount = 0; }
                     }
-                    <span id="commentCount" class="comment-count">@commentCount comments</span>
+                    <span id="commentCount" class="comment-count">@commentCount comment</span>
                     <form class="comment-form">
-                        <input class="comment-text" id="commentText" type="text" placeholder="add comment...">
-                        <input type="button" class="btn btn-primary btn-comment" id="btn_comment" value="Comment">
+                        <input class="comment-text" id="commentText" type="text" placeholder="comment yaz...">
+                        <input type="button" class="btn btn-primary btn-comment" id="btn_comment" value="Göndər">
                     </form>
                     <div id="comments">
                         @{
@@ -74,7 +74,7 @@
                                 </video>
                                 <div class="video-secondary-content">
                                     <h2 class="video-secondary-title">@video.Title</h2>
-                                    <span class="video-secondary-views view_count">@video.ViewCount views</span>
+                                    <span class="video-secondary-views view_count">@video.ViewCount baxış</span>
                                 </div>
                             </button>
                         </form>

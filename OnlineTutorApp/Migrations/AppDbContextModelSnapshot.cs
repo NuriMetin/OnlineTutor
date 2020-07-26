@@ -15,7 +15,7 @@ namespace OnlineTutorApp.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.11-servicing-32099")
+                .HasAnnotation("ProductVersion", "2.1.14-servicing-32113")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -332,13 +332,14 @@ namespace OnlineTutorApp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal>("Amount");
-
                     b.Property<int>("CourseId");
 
-                    b.Property<bool>("IsFree");
+                    b.Property<string>("Path")
+                        .IsRequired();
 
-                    b.Property<string>("Name")
+                    b.Property<DateTime>("PublishDate");
+
+                    b.Property<string>("Title")
                         .IsRequired();
 
                     b.HasKey("ID");
@@ -434,6 +435,44 @@ namespace OnlineTutorApp.Migrations
                     b.ToTable("GroupsUsersCourses");
                 });
 
+            modelBuilder.Entity("OnlineTutorApp.Models.Question", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("AddedDate");
+
+                    b.Property<string>("Content")
+                        .IsRequired();
+
+                    b.Property<int>("QuizId");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("QuizId");
+
+                    b.ToTable("Questions");
+                });
+
+            modelBuilder.Entity("OnlineTutorApp.Models.Quiz", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CourseId");
+
+                    b.Property<string>("Title")
+                        .IsRequired();
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("Quizzes");
+                });
+
             modelBuilder.Entity("OnlineTutorApp.Models.LikeForCourse", b =>
                 {
                     b.Property<string>("ID")
@@ -476,44 +515,6 @@ namespace OnlineTutorApp.Migrations
                     b.ToTable("LikeForVideos");
                 });
 
-            modelBuilder.Entity("OnlineTutorApp.Models.Question", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("AddedDate");
-
-                    b.Property<string>("Content")
-                        .IsRequired();
-
-                    b.Property<int>("QuizId");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("QuizId");
-
-                    b.ToTable("Questions");
-                });
-
-            modelBuilder.Entity("OnlineTutorApp.Models.Quiz", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CourseId");
-
-                    b.Property<string>("Title")
-                        .IsRequired();
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("CourseId");
-
-                    b.ToTable("Quizzes");
-                });
-
             modelBuilder.Entity("OnlineTutorApp.Models.Sillabus", b =>
                 {
                     b.Property<int>("ID")
@@ -522,7 +523,12 @@ namespace OnlineTutorApp.Migrations
 
                     b.Property<int>("CourseId");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Path")
+                        .IsRequired();
+
+                    b.Property<DateTime>("PublishDate");
+
+                    b.Property<string>("Title")
                         .IsRequired();
 
                     b.HasKey("ID");
@@ -532,7 +538,7 @@ namespace OnlineTutorApp.Migrations
                     b.ToTable("Sillabus");
                 });
 
-            modelBuilder.Entity("OnlineTutorApp.Models.UserTestResult", b =>
+            modelBuilder.Entity("OnlineTutorApp.Models.UserControlTestresult", b =>
                 {
                     b.Property<string>("ID")
                         .ValueGeneratedOnAdd();
@@ -552,7 +558,7 @@ namespace OnlineTutorApp.Migrations
 
                     b.HasIndex("QuizId");
 
-                    b.ToTable("UserTestResults");
+                    b.ToTable("UserControlTestresult");
                 });
 
             modelBuilder.Entity("OnlineTutorApp.Models.Video", b =>
@@ -627,7 +633,7 @@ namespace OnlineTutorApp.Migrations
             modelBuilder.Entity("OnlineTutorApp.Models.Answer", b =>
                 {
                     b.HasOne("OnlineTutorApp.Models.Question", "Question")
-                        .WithMany()
+                        .WithMany("Answers")
                         .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -703,6 +709,22 @@ namespace OnlineTutorApp.Migrations
                         .HasForeignKey("GroupRoleID");
                 });
 
+            modelBuilder.Entity("OnlineTutorApp.Models.Question", b =>
+                {
+                    b.HasOne("OnlineTutorApp.Models.Quiz", "Quiz")
+                        .WithMany("Questions")
+                        .HasForeignKey("QuizId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("OnlineTutorApp.Models.Quiz", b =>
+                {
+                    b.HasOne("OnlineTutorApp.Models.Course", "Course")
+                        .WithMany("Quizzes")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("OnlineTutorApp.Models.LikeForCourse", b =>
                 {
                     b.HasOne("OnlineTutorApp.Models.AppUser", "AppUser")
@@ -729,22 +751,6 @@ namespace OnlineTutorApp.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("OnlineTutorApp.Models.Question", b =>
-                {
-                    b.HasOne("OnlineTutorApp.Models.Quiz", "Quiz")
-                        .WithMany("Questions")
-                        .HasForeignKey("QuizId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("OnlineTutorApp.Models.Quiz", b =>
-                {
-                    b.HasOne("OnlineTutorApp.Models.Course", "Course")
-                        .WithMany("Quizzes")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("OnlineTutorApp.Models.Sillabus", b =>
                 {
                     b.HasOne("OnlineTutorApp.Models.Course", "Course")
@@ -753,7 +759,7 @@ namespace OnlineTutorApp.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("OnlineTutorApp.Models.UserTestResult", b =>
+            modelBuilder.Entity("OnlineTutorApp.Models.UserControlTestresult", b =>
                 {
                     b.HasOne("OnlineTutorApp.Models.AppUser", "AppUser")
                         .WithMany("UserTestResults")

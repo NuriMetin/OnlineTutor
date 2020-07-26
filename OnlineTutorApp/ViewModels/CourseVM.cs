@@ -13,6 +13,8 @@ namespace OnlineTutorApp.ViewModels
         public IEnumerable<Course> Courses { get; set; }
         public IEnumerable<CourseUser> CourseUsers { get; set; }
         public IEnumerable<LikeForCourse> LikeForCourses { get; set; }
+        public IEnumerable<DidacticMaterial> DidacticMaterials { get; set; }
+        public IEnumerable<Sillabus> SillabusList { get; set; }
         public CourseUser CourseUser { get; set; }
         public IEnumerable<Video> Videos { get; set; }
         public IEnumerable<Category> Categories { get; set; }

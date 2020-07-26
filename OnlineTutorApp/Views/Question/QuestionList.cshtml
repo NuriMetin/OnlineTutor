@@ -1,0 +1,32 @@
+﻿@model QuestionViewModel
+@{
+    ViewData["Title"] = "Questions";
+}
+<div class="co-md-12 pb-3" style="text-align:center;">
+    <h2>Suallar</h2>
+</div>
+<div class="main-container " style="padding-left:40%; padding-bottom:30px;">
+
+    <div class="col-md-12">
+        <div class="row">
+            <form asp-action="Submit" asp-controller="ControlTest" method="post" style="padding-bottom:20px;">
+                <input type="hidden" value="@Model.QuizId" name="qiuzId" />
+                <ol class="answers-question-list" type="1">
+                    @foreach (var question in Model.Questions)
+                    {
+                        <li style="list-style-type:decimal; font-weight:bold;">
+                            @question.Content<input type="hidden" name="questionId" value="@question.ID" />
+                            <ol type="A" style="margin-left:0 !important; padding-left:0 !important">
+                                @foreach (var answer in question.Answers)
+                                {
+                                    <li style="list-style-type:upper-latin; font-weight:lighter;"><input type="radio" name="question_@question.ID" value="@answer.ID" /> @answer.Content</li>
+                                }
+                            </ol>
+                        </li>
+                    }
+                </ol>
+                <input style="margin-left:20%;" type="submit" value="Təstiqlə" class="btn btn-success" />
+            </form>
+        </div>
+    </div>
+</div>

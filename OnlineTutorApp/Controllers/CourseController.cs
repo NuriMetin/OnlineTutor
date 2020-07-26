@@ -37,6 +37,15 @@ namespace OnlineTutorApp.Controllers
             if (id == null)
                 return NotFound();
 
+            try
+            {
+                var user = await _dbContext.Users.SingleOrDefaultAsync(x => _userManager.FindByNameAsync(User.Identity.Name).GetAwaiter().GetResult().Id == x.Id);
+                ViewBag.SignedInUserId = user.Id;
+            }
+            catch
+            {
+                ViewBag.SignedInUserId = "";
+            }
             CourseVM courseVM = new CourseVM();
             courseVM.Course = await _dbContext.Courses
                                                  .Where(x => x.ID == id)
@@ -142,8 +151,9 @@ namespace OnlineTutorApp.Controllers
                                                         .Include(x => x.AppUser)
                                                             .Include(x => x.Course.DidacticMaterials)
                                                                 .Include(x => x.Course.Videos)
-                                                                    .Include(x => x.Course.Quizzes)
-                                                                        .Where(x => x.AppUserId == user.Id).ToListAsync(),
+                                                                    .Include(x=>x.Course.Sillabus)
+                                                                        .Include(x => x.Course.Quizzes)
+                                                                            .Where(x => x.AppUserId == user.Id).ToListAsync(),
 
                 LikeForCourses = await _dbContext.LikeForCourses.Include(x => x.Course).ToListAsync()
             };
@@ -171,8 +181,6 @@ namespace OnlineTutorApp.Controllers
                 return NotFound();
             }
 
-
-
             RemoveFile(_env.WebRootPath, "images", "courses", course.Image);
 
             foreach (var video in course.Videos)
@@ -188,7 +196,7 @@ namespace OnlineTutorApp.Controllers
             {
                 if (didacticMaterial != null)
                 {
-                    RemoveFile(_env.WebRootPath, "didacticMaterials", didacticMaterial.Name);
+                    RemoveFile(_env.WebRootPath, "didacticMaterials", didacticMaterial.Title);
                 }
             }
 

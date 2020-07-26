@@ -1,0 +1,34 @@
+﻿
+@model IEnumerable<Quiz>
+@{
+    ViewData["Title"] = "QuizList";
+}
+
+<div class="main-container" style="padding-bottom:50px;">
+    <div class="col-md-12 pb-5" style="text-align:center;">
+        <h2>Quizlər</h2>
+    </div>
+    <div id="course" class="col-md-12">
+        <div class="container-fluid">
+            <div class="row">
+                @if (ViewBag.IsAuthor==true)
+                {
+                    <a class="btn btn-primary" asp-controller="Quiz" asp-action="Create" asp-route-id="@ViewBag.CourseId">Yenisini yarat</a>
+                }
+                @foreach (var quiz in Model)
+                {
+                    <div class="course col-md-4 col-sm-12">
+                        <div class="course-thumb">
+                            <h5>@quiz.Title</h5>
+                            <span>@quiz.Questions.Count() Sual</span>
+                            <a asp-action="QuestionList" asp-controller="Question" asp-route-id="@quiz.ID" class="btn btn-light">Testə başla</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

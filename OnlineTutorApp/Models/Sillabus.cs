@@ -11,8 +11,15 @@ namespace OnlineTutorApp.Models
     {
         public int ID { get; set; }
 
+        [Required(ErrorMessage = "Can't be empty")]
+        public string Title { get; set; }
+
         [Required]
-        public string Name { get; set; }
+        [DataType(DataType.DateTime)]
+        public DateTime PublishDate { get; set; }
+
+        [Required(ErrorMessage = "Can't be empty")]
+        public string Path { get; set; }
 
         [Required]
         public int CourseId { get; set; }

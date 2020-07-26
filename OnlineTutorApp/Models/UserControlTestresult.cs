@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OnlineTutorApp.Models
 {
-    public class UserTestResult
+    public class UserControlTestresult
     {
         [Key]
         public string ID { get; set; }

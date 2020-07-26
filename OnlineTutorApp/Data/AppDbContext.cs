@@ -22,13 +22,13 @@ namespace OnlineTutorApp.Data
         public DbSet<Quiz> Quizzes { get; set; }
         public DbSet<Sillabus> Sillabus { get; set; }
         public DbSet<Answer> Answers { get; set; }
-        public DbSet<UserTestResult> UserTestResults { get; set; }
+        public DbSet<UserControlTestresult> UserTestResults { get; set; }
         public DbSet<LikeForCourse> LikeForCourses { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<GroupUserCourse> GroupsUsersCourses { get; set; }
         public DbSet<GroupRole> GroupRoles { get; set; }
-
+        public DbSet<UserControlTestresult> UserControlTestresults { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

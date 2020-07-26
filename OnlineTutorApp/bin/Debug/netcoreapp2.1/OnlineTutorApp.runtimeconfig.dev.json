@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\metin.n\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\metin.n\\.nuget\\packages",
+      "C:\\Users\\Hewlett-Packard\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Hewlett-Packard\\.nuget\\packages",
       "C:\\Microsoft\\Xamarin\\NuGet"
     ]
   }

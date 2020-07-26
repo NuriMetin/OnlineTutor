@@ -12,13 +12,18 @@ namespace OnlineTutorApp.Models
     {
         public int ID { get; set; }
 
-        public string Name { get; set; }
+        [Required(ErrorMessage = "Can't be empty")]
+        public string Title { get; set; }
+
+        [Required]
+        [DataType(DataType.DateTime)]
+        public DateTime PublishDate { get; set; }
+
+        [Required(ErrorMessage = "Can't be empty")]
+        public string Path { get; set; }
 
         [Required]
         public int CourseId { get; set; }
         public virtual Course Course { get; set; }
-
-        [NotMapped]
-        public IFormFile Path { get; set; }
     }
 }

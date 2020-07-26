@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Question>
+@{
+    Layout = null;
+}
+<link href="~/css/question.css" rel="stylesheet" />
+<div style="height:auto;">
+    <div class="col-md-12">
+        <ol class="answers-question-list" type="1">
+            @foreach (var question in Model)
+            {
+                <li style="list-style-type:decimal; font-weight:bold;">
+                    @question.Content<input type="hidden" name="questionId" value="@question.ID" />
+                    <ol type="A" style="margin-left:0 !important; padding-left:0 !important">
+                        @foreach (var answer in question.Answers)
+                        {
+                            if (answer.IsTrue == true)
+                            {
+                                <li style="list-style-type:upper-latin; font-weight:lighter; color:red;"> @answer.Content</li>
+                            }
+                            else
+                            {
+                                <li style="list-style-type:upper-latin; font-weight:lighter;"> @answer.Content</li>
+
+                            }
+                        }
+                    </ol>
+                </li>
+            }
+        </ol>
+    </div>
+</div>

@@ -3,46 +3,48 @@
     ViewData["Title"] = "OwnCourses";
 }
 
-<div class="container">
+<div class="container pt-5 pb-3">
     <a style="color:#ffffff;" class="btn btn-primary btn-block" asp-controller="Course" asp-action="Create"><i style="color:white;" class="fa fa-plus" aria-hidden="true"></i> Əlavə et</a>
     <table class="table table-striped mt-3">
         <thead>
             <tr>
                 <th scope="col">Şəkil</th>
                 <th scope="col">Başlıq</th>
-                <th scope="col">Didaktik material sayı</th>
-                <th scope="col">Video sayı</th>
-                <th scope="col">Kuiz sayı</th>
+                <th scope="col">Didaktik material</th>
+                <th scope="col">Sillabus </th>
+                <th scope="col">Video </th>
+                <th scope="col">Kuiz </th>
                 <th scope="col">Əməliyyatlar</th>
             </tr>
         </thead>
         <tbody>
             @for (int i = 0; i < Model.CourseUsers.Count(); i++)
             {
-                <tr>
-                    @{
-                        int courseId = Model.CourseUsers.ElementAt(i).Course.ID;
-                    }
-                    <td scope="col" sstyle="padding-right:0 !important;"><img style="height:50px; width:100px; " src="~/images/courses/@Model.CourseUsers.ElementAt(i).Course.Image" /></td>
-                    <td>@Model.CourseUsers.ElementAt(i).Course.Title</td>
-                    <td scope="col"><a asp-controller="DidacticMaterial" asp-action="List" asp-route-id="@courseId">@Model.CourseUsers.ElementAt(i).Course.DidacticMaterials.Count()</a></td>
-                    <td scope="col"><a asp-controller="Video" asp-action="List" asp-route-id="@courseId">@Model.CourseUsers.ElementAt(i).Course.Videos.Count()</a></td>
-                    <td scope="col"><a asp-controller="Quiz" asp-action="List" asp-route-id="@courseId">@Model.CourseUsers.ElementAt(i).Course.Quizzes.Count()</a></td>
-                    <td scope="col" style="display:flex;">
-                        <a asp-action="Details" asp-controller="Course" asp-route-id="@courseId" class="btn btn-info">
-                            <i style="color:#ffffff;" class="fas fa-info"></i>
-                        </a>
-                        <a asp-action="Edit" asp-controller="Course" asp-route-id="@courseId" class="btn btn-warning ml-2">
-                            <i style="color:#ffffff;" class="fas fa-pen"></i>
-                        </a>
-                        <form method="post" asp-action="Delete" asp-controller="Course" asp-route-id="@courseId">
-                            <input type="hidden" value="@courseId" />
-                            <button type="submit" class="btn btn-danger ml-2">
-                                <i style="color:#ffffff;" class="fas fa-trash-alt"></i>
-                            </button>
-                        </form>
-                    </td>
-                </tr>
+            <tr>
+                @{
+                    int courseId = Model.CourseUsers.ElementAt(i).Course.ID;
+                }
+                <td scope="col" sstyle="padding-right:0 !important;"><img style="height:50px; width:100px; " src="~/images/courses/@Model.CourseUsers.ElementAt(i).Course.Image" /></td>
+                <td>@Model.CourseUsers.ElementAt(i).Course.Title</td>
+                <td scope="col"><a asp-controller="DidacticMaterial" asp-action="OwnDidactic" asp-route-id="@courseId">@Model.CourseUsers.ElementAt(i).Course.DidacticMaterials.Count()</a></td>
+                <td scope="col"><a asp-controller="Sillabus" asp-action="OwnSillabus" asp-route-id="@courseId">@Model.CourseUsers.ElementAt(i).Course.Sillabus.Count()</a></td>
+                <td scope="col"><a asp-controller="Video" asp-action="List" asp-route-id="@courseId">@Model.CourseUsers.ElementAt(i).Course.Videos.Count()</a></td>
+                <td scope="col"><a asp-controller="Quiz" asp-action="OwnQuizzes" asp-route-id="@courseId">@Model.CourseUsers.ElementAt(i).Course.Quizzes.Count()</a></td>
+                <td scope="col" style="display:flex;">
+                    <a asp-action="Details" asp-controller="Course" asp-route-id="@courseId" class="btn btn-info">
+                        <i style="color:#ffffff;" class="fas fa-info"></i>
+                    </a>
+                    <a asp-action="Edit" asp-controller="Course" asp-route-id="@courseId" class="btn btn-warning ml-2">
+                        <i style="color:#ffffff;" class="fas fa-pen"></i>
+                    </a>
+                    <form method="post" asp-action="Delete" asp-controller="Course" asp-route-id="@courseId">
+                        <input type="hidden" value="@courseId" />
+                        <button type="submit" class="btn btn-danger ml-2">
+                            <i style="color:#ffffff;" class="fas fa-trash-alt"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
             }
         </tbody>
     </table>

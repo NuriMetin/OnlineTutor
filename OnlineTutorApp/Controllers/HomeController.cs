@@ -58,7 +58,36 @@ namespace OnlineTutorApp.Controllers
             ViewData["Message"] = "Your application description page.";
             return View();
         }
+        public async Task<IActionResult> AllCourses()
+        {
 
+            HomeVM homeVM = new HomeVM();
+
+            homeVM.Courses = await _dbContext.Courses
+                                                .Include(x => x.CoursesUsers)
+                                                    .Include(x => x.Category).ToListAsync();
+
+            homeVM.CourseUsers = await _dbContext.CoursesUsers
+                                                    .Include(x => x.Course)
+                                                        .Include(x => x.AppUser).ToListAsync();
+
+            homeVM.LikeForCourses = await _dbContext.LikeForCourses
+                                                        .Include(x => x.AppUser)
+                                                            .Include(x => x.Course).ToListAsync();
+
+            try
+            {
+                var user = await _dbContext.Users.SingleOrDefaultAsync(x => _userManager.FindByNameAsync(User.Identity.Name).GetAwaiter().GetResult().Id == x.Id);
+                ViewBag.UserId = user.Id;
+            }
+
+            catch
+            {
+                ViewBag.UserId = "";
+            }
+
+            return View(homeVM);
+        }
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
@@ -76,6 +105,10 @@ namespace OnlineTutorApp.Controllers
             if (!await _roleManager.RoleExistsAsync("User"))
             {
                 await _roleManager.CreateAsync(new IdentityRole("User"));
+            }
+            if (!await _roleManager.RoleExistsAsync("Teacher"))
+            {
+                await _roleManager.CreateAsync(new IdentityRole("Teacher"));
             }
         }
 

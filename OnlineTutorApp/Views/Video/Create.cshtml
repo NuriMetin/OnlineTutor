@@ -1,12 +1,12 @@
 ﻿@model Video
 
-<div class="container">
-    <div class="row">
-        <form method="post" enctype="multipart/form-data" asp-controller="Video" asp-action="Create">
+<div class="container pb-5 pt-5" style="text-align:center;">
+    <div class="row" style="text-align:center;">
+        <form  style="text-align:center; padding-left:35%;" method="post" enctype="multipart/form-data" asp-controller="Video" asp-action="Create" asp-route-id="@ViewBag.CourseId">
             <div class="text-danger" asp-validation-summary="ModelOnly"></div>
             <input type="hidden" asp-for="CourseId" value="@ViewBag.CourseId" />
             <div class="form-group">
-                <label class="control-label"></label>
+                <label class="control-label">Faylı seçin</label>
                 <input type="file" asp-for="VideoPath" />
                 <span asp-validation-for="VideoPath" class="text-danger"></span>
             </div>

@@ -1,0 +1,33 @@
+﻿@model CourseVM
+@{
+    ViewData["Title"] = "OwnSillabus";
+}
+
+
+
+<div class="main-container pb-5 pt-3">
+    <div id="course" class="col-md-12">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="section-title col-md-12 col-sm-12 pb-5" style="text-align:center;">
+                    <h2 class="pb-3">Sillabus</h2>
+                    <a style="color:#ffffff;" class="btn btn-primary btn-block" asp-controller="Sillabus" asp-action="Create" asp-route-id="@ViewBag.CourseId"><i style="color:white;" class="fa fa-plus" aria-hidden="true"></i> Əlavə et</a>
+                </div>
+                @foreach (var sillabus in Model.SillabusList)
+                {
+                    <div class="course col-md-4 col-sm-12 ">
+                        <div class="course-thumb">
+                            <form asp-action="Delete" style="position:absolute; right:10%;" asp-controller="Sillabus" class="delete" asp-route-id="@sillabus.ID">
+                                <input type="hidden" value="@sillabus.ID" name="Id" />
+                                <button style="border:none; background:transparent;" type="submit"><i class="fas fa-trash-alt"></i></button>
+                            </form>
+                            <h5>@sillabus.Title</h5>
+                            <span>@sillabus.PublishDate</span>
+                            <a href="~/sillabus/@sillabus.Path" class="btn btn-light">Yüklə</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

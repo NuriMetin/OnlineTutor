@@ -164,9 +164,7 @@ namespace OnlineTutorApp.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: false),
-                    Amount = table.Column<decimal>(nullable: false),
-                    IsFree = table.Column<bool>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
                     CourseId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -445,7 +443,7 @@ namespace OnlineTutorApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserTestResults",
+                name: "UserControlTestresult",
                 columns: table => new
                 {
                     ID = table.Column<string>(nullable: false),
@@ -456,15 +454,15 @@ namespace OnlineTutorApp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserTestResults", x => x.ID);
+                    table.PrimaryKey("PK_UserControlTestresult", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_UserTestResults_AspNetUsers_AppUserId",
+                        name: "FK_UserControlTestresult_AspNetUsers_AppUserId",
                         column: x => x.AppUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserTestResults_Quizzes_QuizId",
+                        name: "FK_UserControlTestresult_Quizzes_QuizId",
                         column: x => x.QuizId,
                         principalTable: "Quizzes",
                         principalColumn: "ID",
@@ -724,13 +722,13 @@ namespace OnlineTutorApp.Migrations
                 column: "CourseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserTestResults_AppUserId",
-                table: "UserTestResults",
+                name: "IX_UserControlTestresult_AppUserId",
+                table: "UserControlTestresult",
                 column: "AppUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserTestResults_QuizId",
-                table: "UserTestResults",
+                name: "IX_UserControlTestresult_QuizId",
+                table: "UserControlTestresult",
                 column: "QuizId");
 
             migrationBuilder.CreateIndex(
@@ -781,7 +779,7 @@ namespace OnlineTutorApp.Migrations
                 name: "Sillabus");
 
             migrationBuilder.DropTable(
-                name: "UserTestResults");
+                name: "UserControlTestresult");
 
             migrationBuilder.DropTable(
                 name: "Questions");

@@ -1,47 +1,29 @@
-﻿@model IEnumerable<DidacticMaterial>
+﻿@model CourseVM
+
 @{
     ViewData["Title"] = "List";
 }
 
-<div class="container">
-    <a style="color:#ffffff;" class="btn btn-primary btn-block" asp-controller="Video" asp-action="Create" asp-route-id="@ViewBag.CourseId"><i style="color:white;" class="fa fa-plus" aria-hidden="true"></i> Əlavə et</a>
-    <table class="table table-striped mt-3">
-        <thead>
-            <tr>
-                <th scope="col">Şəkil</th>
-                <th scope="col">Başlıq</th>
-                <th scope="col">Bəyənənlər sayı</th>
-                <th scope="col">Bəyənməyənlər sayı</th>
-                <th scope="col">Comment sayı</th>
-                <th scope="col">Əməliyyatlar</th>
-            </tr>
-        </thead>
-        <tbody>
-            @for (int i = 0; i < Model.Count(); i++)
-            {
-                <tr>
-                    @{
-                        int didacticMaterialId = Model.ElementAt(i).ID;
-                    }
-                    <td scope="col" style="">
-                        @Model.ElementAt(i).Name
-                    </td>
-                    <td scope="col" style="display:flex;">
-                        <a asp-action="Details" asp-controller="DidacticMaterial" asp-route-id="@didacticMaterialId" class="btn btn-info">
-                            <i style="color:#ffffff;" class="fas fa-info"></i>
-                        </a>
-                        <a asp-action="Edit" asp-controller="DidacticMaterial" asp-route-id="@didacticMaterialId" class="btn btn-warning ml-2">
-                            <i style="color:#ffffff;" class="fas fa-pen"></i>
-                        </a>
-                        <form method="post" asp-action="Delete" asp-controller="Video" asp-route-id="@didacticMaterialId">
-                            <input type="hidden" value="@didacticMaterialId" />
-                            <button type="submit" class="btn btn-danger ml-2">
-                                <i style="color:#ffffff;" class="fas fa-trash-alt"></i>
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+<link rel="stylesheet" href="~/css/course.css">
+
+<div class="main-container pb-3">
+    <div id="course" class="col-md-12">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="section-title col-md-12 col-sm-12 pb-5" style="text-align:center;">
+                    <h2 style="padding-bottom:25px;"> <small>Didaktik Material</small></h2>
+                </div>
+                @foreach (var course in Model.DidacticMaterials)
+                {
+                    <div class="course col-md-4 col-sm-12 pb-3 pt-3  mb-3 mt-3">
+                        <div class="course-thumb">
+                            <h5>@course.Title</h5>
+                            <span>@course.PublishDate</span>
+                            <a href="~/didacticMaterials/@course.Path" class="btn btn-light">Yüklə</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Quiz>
+@{
+    ViewData["Title"] = "AllQuizzes";
+}
+<link rel="stylesheet" href="~/css/course.css">
+
+<div class="main-container">
+    <div style="text-align:right;" class="col-md-7">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <a asp-controller="ControlTest" asp-action="Results" class="btn btn-primary">Results</a>
+        }
+    </div>
+    <div id="course" class="col-md-12">
+        <div class="container-fluid">
+            <div class="row">
+                @foreach (var quiz in Model)
+                {
+                    <div class="course col-md-4 col-sm-12">
+                        <div class="course-thumb">
+                            <h5>@quiz.Title</h5>
+                            <span>@quiz.Questions.Count() questions</span>
+                            <a asp-action="QuestionList" asp-controller="Question" asp-route-id="@quiz.ID" class="btn btn-light">Begin tests</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

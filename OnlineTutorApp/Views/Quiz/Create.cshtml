@@ -1,0 +1,26 @@
+﻿@model Quiz
+@{
+    ViewData["Title"] = "Create";
+}
+
+    <div class="main-container pt-5" >
+
+        <div class="col-md-12" style="text-align:center; padding-top:30px;">
+            <form style="padding-bottom:45px; padding-left:40%;" method="post" asp-action="Create" asp-controller="Quiz" enctype="multipart/form-data">
+                <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group col-lg-8">
+                            <label class="control-label">Başlıq</label>
+                            <input class="form-control" asp-for="Title" />
+                            <span class="text-danger" asp-validation-for="Title"></span>
+                        </div>
+                        <div class="btn-register col-lg-8" style="text-align:center;">
+                            <input type="submit" class="btn btn-primary" value="Saxla" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
